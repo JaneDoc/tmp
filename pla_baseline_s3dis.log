@@ -1,0 +1,1412 @@
++ NGPUS=8
++ export PYPATH=/home/zhijiew/.opt/miniconda/envs/3dsegv100/bin
++ PYPATH=/home/zhijiew/.opt/miniconda/envs/3dsegv100/bin
++ true
++ PORT=52027
+++ nc -z 127.0.0.1 52027
+++ echo 1
++ status=1
++ '[' 1 '!=' 0 ']'
++ break
++ echo 52027
+52027
++ ulimit -n 64000
++ /home/zhijiew/.opt/miniconda/envs/3dsegv100/bin/python -m torch.distributed.launch --nproc_per_node=8 train.py --launcher pytorch --tcp_port 52027 --cfg_file cfgs/s3dis_models/spconv_clip_base8_caption_adamw.yaml --extra_tag exp_tag --find_unused_parameters
+2023-09-20 16:27:07,526   INFO  **********************Start logging**********************
+2023-09-20 16:27:07,528   INFO  CUDA_VISIBLE_DEVICES=ALL
+2023-09-20 16:27:07,528   INFO  total_batch_size: 32
+2023-09-20 16:27:07,528   INFO  cfg_file         cfgs/s3dis_models/spconv_clip_base8_caption_adamw.yaml
+2023-09-20 16:27:07,528   INFO  batch_size       4
+2023-09-20 16:27:07,528   INFO  epochs           32
+2023-09-20 16:27:07,528   INFO  workers          4
+2023-09-20 16:27:07,528   INFO  extra_tag        exp_tag
+2023-09-20 16:27:07,529   INFO  ckpt             None
+2023-09-20 16:27:07,529   INFO  pretrained_model None
+2023-09-20 16:27:07,529   INFO  launcher         pytorch
+2023-09-20 16:27:07,529   INFO  tcp_port         52027
+2023-09-20 16:27:07,529   INFO  sync_bn          False
+2023-09-20 16:27:07,529   INFO  fix_random_seed  False
+2023-09-20 16:27:07,530   INFO  ckpt_save_interval 5
+2023-09-20 16:27:07,530   INFO  local_rank       0
+2023-09-20 16:27:07,530   INFO  max_ckpt_save_num 2
+2023-09-20 16:27:07,530   INFO  merge_all_iters_to_one_epoch False
+2023-09-20 16:27:07,530   INFO  set_cfgs         None
+2023-09-20 16:27:07,530   INFO  max_waiting_mins 0
+2023-09-20 16:27:07,531   INFO  start_epoch      0
+2023-09-20 16:27:07,531   INFO  num_epochs_to_eval 0
+2023-09-20 16:27:07,531   INFO  save_to_file     False
+2023-09-20 16:27:07,531   INFO  print_freq       20
+2023-09-20 16:27:07,531   INFO  eval_freq        5
+2023-09-20 16:27:07,531   INFO  validate_start   False
+2023-09-20 16:27:07,531   INFO  use_amp          True
+2023-09-20 16:27:07,532   INFO  arnold_enabled   False
+2023-09-20 16:27:07,532   INFO  arnold_dir       output_pcseg
+2023-09-20 16:27:07,532   INFO  multi_epoch_loader False
+2023-09-20 16:27:07,532   INFO  find_unused_parameters True
+2023-09-20 16:27:07,532   INFO  occupy           False
+2023-09-20 16:27:07,532   INFO  test_batch_size  1
+2023-09-20 16:27:07,532   INFO  cfg.ROOT_DIR: /home/zhijiew/codes/3dseg/PLA
+2023-09-20 16:27:07,532   INFO  cfg.LOCAL_RANK: 0
+2023-09-20 16:27:07,533   INFO  cfg.CLASS_NAMES: ['ceiling', 'floor', 'wall', 'beam', 'column', 'window', 'door', 'table', 'chair', 'sofa', 'bookcase', 'board', 'clutter']
+2023-09-20 16:27:07,533   INFO  
+cfg.DATA_CONFIG = edict()
+2023-09-20 16:27:07,533   INFO  cfg.DATA_CONFIG.DATA_PATH: ../data/s3dis
+2023-09-20 16:27:07,533   INFO  cfg.DATA_CONFIG.DATASET: S3DISDataset
+2023-09-20 16:27:07,533   INFO  cfg.DATA_CONFIG.COLLATE_FN: collate_batch_indoor
+2023-09-20 16:27:07,533   INFO  cfg.DATA_CONFIG.MIN_SPATIAL_SCALE: 128
+2023-09-20 16:27:07,533   INFO  
+cfg.DATA_CONFIG.DATA_SPLIT = edict()
+2023-09-20 16:27:07,533   INFO  cfg.DATA_CONFIG.DATA_SPLIT.train: train
+2023-09-20 16:27:07,533   INFO  cfg.DATA_CONFIG.DATA_SPLIT.test: val
+2023-09-20 16:27:07,534   INFO  cfg.DATA_CONFIG.DATA_SPLIT.data_suffix: .npy
+2023-09-20 16:27:07,534   INFO  cfg.DATA_CONFIG.DATA_SPLIT.test_area: 5
+2023-09-20 16:27:07,534   INFO  cfg.DATA_CONFIG.IGNORE_LABEL: -100
+2023-09-20 16:27:07,534   INFO  
+cfg.DATA_CONFIG.DATA_AUG = edict()
+2023-09-20 16:27:07,534   INFO  cfg.DATA_CONFIG.DATA_AUG.AUG_LIST: ['scene_aug', 'elastic', 'crop', 'shuffle']
+2023-09-20 16:27:07,534   INFO  
+cfg.DATA_CONFIG.DATA_AUG.scene_aug = edict()
+2023-09-20 16:27:07,534   INFO  
+cfg.DATA_CONFIG.DATA_AUG.scene_aug.scaling_scene = edict()
+2023-09-20 16:27:07,534   INFO  cfg.DATA_CONFIG.DATA_AUG.scene_aug.scaling_scene.enabled: False
+2023-09-20 16:27:07,535   INFO  cfg.DATA_CONFIG.DATA_AUG.scene_aug.scaling_scene.p: 1.0
+2023-09-20 16:27:07,535   INFO  cfg.DATA_CONFIG.DATA_AUG.scene_aug.scaling_scene.value: [0.9, 1.1]
+2023-09-20 16:27:07,535   INFO  
+cfg.DATA_CONFIG.DATA_AUG.scene_aug.rotation = edict()
+2023-09-20 16:27:07,535   INFO  cfg.DATA_CONFIG.DATA_AUG.scene_aug.rotation.p: 1.0
+2023-09-20 16:27:07,535   INFO  cfg.DATA_CONFIG.DATA_AUG.scene_aug.rotation.value: [0.0, 0.0, 1.0]
+2023-09-20 16:27:07,535   INFO  cfg.DATA_CONFIG.DATA_AUG.scene_aug.jitter: True
+2023-09-20 16:27:07,535   INFO  cfg.DATA_CONFIG.DATA_AUG.scene_aug.color_jitter: True
+2023-09-20 16:27:07,535   INFO  
+cfg.DATA_CONFIG.DATA_AUG.scene_aug.flip = edict()
+2023-09-20 16:27:07,535   INFO  cfg.DATA_CONFIG.DATA_AUG.scene_aug.flip.p: 0.5
+2023-09-20 16:27:07,536   INFO  
+cfg.DATA_CONFIG.DATA_AUG.scene_aug.random_jitter = edict()
+2023-09-20 16:27:07,536   INFO  cfg.DATA_CONFIG.DATA_AUG.scene_aug.random_jitter.enabled: False
+2023-09-20 16:27:07,536   INFO  cfg.DATA_CONFIG.DATA_AUG.scene_aug.random_jitter.value: 0.01
+2023-09-20 16:27:07,536   INFO  cfg.DATA_CONFIG.DATA_AUG.scene_aug.random_jitter.accord_to_size: False
+2023-09-20 16:27:07,536   INFO  cfg.DATA_CONFIG.DATA_AUG.scene_aug.random_jitter.p: 1.0
+2023-09-20 16:27:07,536   INFO  
+cfg.DATA_CONFIG.DATA_AUG.elastic = edict()
+2023-09-20 16:27:07,536   INFO  cfg.DATA_CONFIG.DATA_AUG.elastic.enabled: True
+2023-09-20 16:27:07,536   INFO  cfg.DATA_CONFIG.DATA_AUG.elastic.value: [[6, 40], [20, 160]]
+2023-09-20 16:27:07,536   INFO  cfg.DATA_CONFIG.DATA_AUG.elastic.apply_to_feat: False
+2023-09-20 16:27:07,536   INFO  cfg.DATA_CONFIG.DATA_AUG.elastic.p: 1.0
+2023-09-20 16:27:07,537   INFO  
+cfg.DATA_CONFIG.DATA_AUG.crop = edict()
+2023-09-20 16:27:07,537   INFO  cfg.DATA_CONFIG.DATA_AUG.crop.step: 64
+2023-09-20 16:27:07,537   INFO  cfg.DATA_CONFIG.DATA_AUG.shuffle: True
+2023-09-20 16:27:07,537   INFO  
+cfg.DATA_CONFIG.DATA_PROCESSOR = edict()
+2023-09-20 16:27:07,537   INFO  cfg.DATA_CONFIG.DATA_PROCESSOR.repeat: 20
+2023-09-20 16:27:07,537   INFO  cfg.DATA_CONFIG.DATA_PROCESSOR.rgb_norm: True
+2023-09-20 16:27:07,537   INFO  cfg.DATA_CONFIG.DATA_PROCESSOR.point_range: 200000000
+2023-09-20 16:27:07,537   INFO  cfg.DATA_CONFIG.DATA_PROCESSOR.voxel_scale: 50
+2023-09-20 16:27:07,537   INFO  cfg.DATA_CONFIG.DATA_PROCESSOR.cache: True
+2023-09-20 16:27:07,537   INFO  cfg.DATA_CONFIG.DATA_PROCESSOR.max_npoint: 250000
+2023-09-20 16:27:07,538   INFO  cfg.DATA_CONFIG.DATA_PROCESSOR.full_scale: [128, 512]
+2023-09-20 16:27:07,538   INFO  cfg.DATA_CONFIG.DATA_PROCESSOR.voxel_mode: 4
+2023-09-20 16:27:07,538   INFO  cfg.DATA_CONFIG.DATA_PROCESSOR.xyz_norm: False
+2023-09-20 16:27:07,538   INFO  cfg.DATA_CONFIG.DATA_PROCESSOR.x4_split: True
+2023-09-20 16:27:07,538   INFO  cfg.DATA_CONFIG.DATA_PROCESSOR.downsampling_scale: 4
+2023-09-20 16:27:07,538   INFO  cfg.DATA_CONFIG.DATA_PROCESSOR.xyz_as_feat: True
+2023-09-20 16:27:07,538   INFO  cfg.DATA_CONFIG.DATA_PROCESSOR.rgb_as_feat: True
+2023-09-20 16:27:07,538   INFO  cfg.DATA_CONFIG.DATA_PROCESSOR.PROCESS_LIST: []
+2023-09-20 16:27:07,538   INFO  cfg.DATA_CONFIG._BASE_CONFIG_: cfgs/dataset_configs/s3dis_dataset.yaml
+2023-09-20 16:27:07,538   INFO  cfg.DATA_CONFIG.ignore_class_idx: [12]
+2023-09-20 16:27:07,539   INFO  cfg.DATA_CONFIG.base_class_idx: [0, 1, 2, 3, 4, 6, 8, 11]
+2023-09-20 16:27:07,539   INFO  cfg.DATA_CONFIG.novel_class_idx: [5, 7, 9, 10]
+2023-09-20 16:27:07,539   INFO  
+cfg.DATA_CONFIG.CAPTION_INFO = edict()
+2023-09-20 16:27:07,539   INFO  cfg.DATA_CONFIG.CAPTION_INFO.KEY: ['SCENE', 'VIEW', 'ENTITY']
+2023-09-20 16:27:07,539   INFO  
+cfg.DATA_CONFIG.CAPTION_INFO.SCENE = edict()
+2023-09-20 16:27:07,539   INFO  cfg.DATA_CONFIG.CAPTION_INFO.SCENE.ENABLED: False
+2023-09-20 16:27:07,539   INFO  cfg.DATA_CONFIG.CAPTION_INFO.SCENE.CAPTION_PATH: text_embed/caption_scene_s3dis_vit-gpt2-image-captioning_max50.json
+2023-09-20 16:27:07,539   INFO  cfg.DATA_CONFIG.CAPTION_INFO.SCENE.GATHER_CAPTION: True
+2023-09-20 16:27:07,539   INFO  
+cfg.DATA_CONFIG.CAPTION_INFO.VIEW = edict()
+2023-09-20 16:27:07,539   INFO  cfg.DATA_CONFIG.CAPTION_INFO.VIEW.ENABLED: True
+2023-09-20 16:27:07,540   INFO  cfg.DATA_CONFIG.CAPTION_INFO.VIEW.CAPTION_PATH: text_embed/caption_view_s3dis_vit-gpt2-image-captioning_max50.json
+2023-09-20 16:27:07,540   INFO  cfg.DATA_CONFIG.CAPTION_INFO.VIEW.IMAGE_CORR_PATH: caption_idx/s3dis_view_vit-gpt2_matching_idx
+2023-09-20 16:27:07,540   INFO  cfg.DATA_CONFIG.CAPTION_INFO.VIEW.SELECT: ratio
+2023-09-20 16:27:07,540   INFO  cfg.DATA_CONFIG.CAPTION_INFO.VIEW.NUM: 1
+2023-09-20 16:27:07,540   INFO  cfg.DATA_CONFIG.CAPTION_INFO.VIEW.RATIO: 0.2
+2023-09-20 16:27:07,540   INFO  cfg.DATA_CONFIG.CAPTION_INFO.VIEW.GATHER_CAPTION: True
+2023-09-20 16:27:07,540   INFO  
+cfg.DATA_CONFIG.CAPTION_INFO.ENTITY = edict()
+2023-09-20 16:27:07,540   INFO  cfg.DATA_CONFIG.CAPTION_INFO.ENTITY.ENABLED: True
+2023-09-20 16:27:07,541   INFO  cfg.DATA_CONFIG.CAPTION_INFO.ENTITY.CAPTION_PATH: text_embed/caption_entity_s3dis_vit-gpt2-image-captioning_max50.json
+2023-09-20 16:27:07,541   INFO  cfg.DATA_CONFIG.CAPTION_INFO.ENTITY.IMAGE_CORR_PATH: caption_idx/s3dis_entity_vit-gpt2_matching_idx
+2023-09-20 16:27:07,541   INFO  cfg.DATA_CONFIG.CAPTION_INFO.ENTITY.SELECT: ratio
+2023-09-20 16:27:07,541   INFO  cfg.DATA_CONFIG.CAPTION_INFO.ENTITY.NUM: 1
+2023-09-20 16:27:07,541   INFO  cfg.DATA_CONFIG.CAPTION_INFO.ENTITY.RATIO: 1.0
+2023-09-20 16:27:07,541   INFO  cfg.DATA_CONFIG.CAPTION_INFO.ENTITY.GATHER_CAPTION: True
+2023-09-20 16:27:07,541   INFO  cfg.DATA_CONFIG.CAPTION_INFO.CAPTION_CORR_PATH_IN_ONE_FILE: False
+2023-09-20 16:27:07,541   INFO  
+cfg.MODEL = edict()
+2023-09-20 16:27:07,542   INFO  cfg.MODEL.NAME: SparseUNetTextSeg
+2023-09-20 16:27:07,542   INFO  cfg.MODEL.REMAP_FROM_3DLANG: False
+2023-09-20 16:27:07,542   INFO  cfg.MODEL.REMAP_FROM_NOADAPTER: False
+2023-09-20 16:27:07,542   INFO  
+cfg.MODEL.VFE = edict()
+2023-09-20 16:27:07,542   INFO  cfg.MODEL.VFE.NAME: IndoorVFE
+2023-09-20 16:27:07,542   INFO  cfg.MODEL.VFE.USE_XYZ: True
+2023-09-20 16:27:07,542   INFO  
+cfg.MODEL.BACKBONE_3D = edict()
+2023-09-20 16:27:07,542   INFO  cfg.MODEL.BACKBONE_3D.NAME: SparseUNetIndoor
+2023-09-20 16:27:07,542   INFO  cfg.MODEL.BACKBONE_3D.IN_CHANNEL: 6
+2023-09-20 16:27:07,543   INFO  cfg.MODEL.BACKBONE_3D.MID_CHANNEL: 16
+2023-09-20 16:27:07,543   INFO  cfg.MODEL.BACKBONE_3D.BLOCK_RESIDUAL: True
+2023-09-20 16:27:07,543   INFO  cfg.MODEL.BACKBONE_3D.BLOCK_REPS: 2
+2023-09-20 16:27:07,543   INFO  cfg.MODEL.BACKBONE_3D.NUM_BLOCKS: 7
+2023-09-20 16:27:07,543   INFO  cfg.MODEL.BACKBONE_3D.CUSTOM_SP1X1: True
+2023-09-20 16:27:07,543   INFO  
+cfg.MODEL.ADAPTER = edict()
+2023-09-20 16:27:07,543   INFO  cfg.MODEL.ADAPTER.NAME: VLAdapter
+2023-09-20 16:27:07,543   INFO  cfg.MODEL.ADAPTER.EVAL_ONLY: False
+2023-09-20 16:27:07,543   INFO  cfg.MODEL.ADAPTER.NUM_ADAPTER_LAYERS: 2
+2023-09-20 16:27:07,543   INFO  cfg.MODEL.ADAPTER.TEXT_DIM: -1
+2023-09-20 16:27:07,544   INFO  cfg.MODEL.ADAPTER.LAST_NORM: True
+2023-09-20 16:27:07,544   INFO  cfg.MODEL.ADAPTER.FEAT_NORM: False
+2023-09-20 16:27:07,544   INFO  
+cfg.MODEL.TASK_HEAD = edict()
+2023-09-20 16:27:07,544   INFO  cfg.MODEL.TASK_HEAD.NAME: TextSegHead
+2023-09-20 16:27:07,544   INFO  
+cfg.MODEL.TASK_HEAD.TEXT_EMBED = edict()
+2023-09-20 16:27:07,544   INFO  cfg.MODEL.TASK_HEAD.TEXT_EMBED.NAME: CLIP
+2023-09-20 16:27:07,544   INFO  cfg.MODEL.TASK_HEAD.TEXT_EMBED.NORM: True
+2023-09-20 16:27:07,544   INFO  cfg.MODEL.TASK_HEAD.TEXT_EMBED.PATH: text_embed/s3dis_clip-ViT-B16_id.pth
+2023-09-20 16:27:07,544   INFO  
+cfg.MODEL.TASK_HEAD.LOGIT_SCALE = edict()
+2023-09-20 16:27:07,545   INFO  cfg.MODEL.TASK_HEAD.LOGIT_SCALE.value: 1.0
+2023-09-20 16:27:07,545   INFO  cfg.MODEL.TASK_HEAD.LOGIT_SCALE.learnable: False
+2023-09-20 16:27:07,545   INFO  cfg.MODEL.TASK_HEAD.CORRECT_SEG_PRED_BINARY: True
+2023-09-20 16:27:07,545   INFO  
+cfg.MODEL.BINARY_HEAD = edict()
+2023-09-20 16:27:07,545   INFO  cfg.MODEL.BINARY_HEAD.NAME: BinaryHead
+2023-09-20 16:27:07,545   INFO  cfg.MODEL.BINARY_HEAD.DETACH: True
+2023-09-20 16:27:07,545   INFO  cfg.MODEL.BINARY_HEAD.THRESH: 0.5
+2023-09-20 16:27:07,545   INFO  cfg.MODEL.BINARY_HEAD.CUSTOM_SP1X1: True
+2023-09-20 16:27:07,545   INFO  cfg.MODEL.BINARY_HEAD.HOOK_FEATURE_LIST: ['unet.blocks.block1', 'unet.u.blocks.block1', 'unet.u.u.blocks.block1', 'unet.u.u.u.blocks.block1', 'unet.u.u.u.u.blocks.block1', 'unet.u.u.u.u.u.blocks.block1', 'unet.u.u.u.u.u.u.blocks.block1']
+2023-09-20 16:27:07,546   INFO  
+cfg.MODEL.CAPTION_HEAD = edict()
+2023-09-20 16:27:07,546   INFO  cfg.MODEL.CAPTION_HEAD.NAME: CaptionHead
+2023-09-20 16:27:07,546   INFO  cfg.MODEL.CAPTION_HEAD.FEAT_NORM: True
+2023-09-20 16:27:07,546   INFO  
+cfg.MODEL.CAPTION_HEAD.LOGIT_SCALE = edict()
+2023-09-20 16:27:07,546   INFO  cfg.MODEL.CAPTION_HEAD.LOGIT_SCALE.value: 100.0
+2023-09-20 16:27:07,546   INFO  cfg.MODEL.CAPTION_HEAD.LOGIT_SCALE.learnable: True
+2023-09-20 16:27:07,546   INFO  
+cfg.MODEL.CAPTION_HEAD.LOSS_WEIGHT = edict()
+2023-09-20 16:27:07,546   INFO  cfg.MODEL.CAPTION_HEAD.LOSS_WEIGHT.SCENE: 0.0
+2023-09-20 16:27:07,547   INFO  cfg.MODEL.CAPTION_HEAD.LOSS_WEIGHT.VIEW: 0.08
+2023-09-20 16:27:07,547   INFO  cfg.MODEL.CAPTION_HEAD.LOSS_WEIGHT.ENTITY: 0.02
+2023-09-20 16:27:07,547   INFO  
+cfg.TEXT_ENCODER = edict()
+2023-09-20 16:27:07,547   INFO  cfg.TEXT_ENCODER.NAME: CLIP
+2023-09-20 16:27:07,547   INFO  cfg.TEXT_ENCODER.BACKBONE: ViT-B/16
+2023-09-20 16:27:07,547   INFO  cfg.TEXT_ENCODER.TEMPLATE: identity
+2023-09-20 16:27:07,547   INFO  cfg.TEXT_ENCODER.EXTRACT_EMBED: False
+2023-09-20 16:27:07,547   INFO  
+cfg.OPTIMIZATION = edict()
+2023-09-20 16:27:07,547   INFO  cfg.OPTIMIZATION.TEST_BATCH_SIZE_PER_GPU: 1
+2023-09-20 16:27:07,547   INFO  cfg.OPTIMIZATION.BATCH_SIZE_PER_GPU: 4
+2023-09-20 16:27:07,548   INFO  cfg.OPTIMIZATION.NUM_EPOCHS: 32
+2023-09-20 16:27:07,548   INFO  cfg.OPTIMIZATION.LR: 0.004
+2023-09-20 16:27:07,548   INFO  cfg.OPTIMIZATION.SCHEDULER: cos_after_step
+2023-09-20 16:27:07,548   INFO  cfg.OPTIMIZATION.OPTIMIZER: adamw
+2023-09-20 16:27:07,548   INFO  cfg.OPTIMIZATION.WEIGHT_DECAY: 0.0001
+2023-09-20 16:27:07,548   INFO  cfg.OPTIMIZATION.MOMENTUM: 0.9
+2023-09-20 16:27:07,548   INFO  cfg.OPTIMIZATION.STEP_EPOCH: 20
+2023-09-20 16:27:07,548   INFO  cfg.OPTIMIZATION.MULTIPLIER: 0.1
+2023-09-20 16:27:07,548   INFO  cfg.OPTIMIZATION.CLIP_GRAD: False
+2023-09-20 16:27:07,548   INFO  cfg.OPTIMIZATION.PCT_START: 0.39
+2023-09-20 16:27:07,549   INFO  cfg.OPTIMIZATION.DIV_FACTOR: 1
+2023-09-20 16:27:07,549   INFO  cfg.OPTIMIZATION.MOMS: [0.95, 0.85]
+2023-09-20 16:27:07,549   INFO  cfg.OPTIMIZATION.LR_CLIP: 1e-06
+2023-09-20 16:27:07,549   INFO  
+cfg.OTHERS = edict()
+2023-09-20 16:27:07,549   INFO  cfg.OTHERS.PRINT_FREQ: 20
+2023-09-20 16:27:07,549   INFO  cfg.OTHERS.EVAL_FREQ: 5
+2023-09-20 16:27:07,549   INFO  cfg.OTHERS.SYNC_BN: False
+2023-09-20 16:27:07,549   INFO  cfg.OTHERS.USE_AMP: True
+2023-09-20 16:27:07,549   INFO  cfg._BASE_CONFIG_: cfgs/s3dis_models/spconv_clip_adamw.yaml
+2023-09-20 16:27:07,549   INFO  cfg.TAG: spconv_clip_base8_caption_adamw
+2023-09-20 16:27:07,549   INFO  cfg.EXP_GROUP_PATH: s3dis_models
+2023-09-20 16:27:36,139   INFO  Totally 4080 samples in train set.
+2023-09-20 16:27:47,091   INFO  Totally 68 samples in test set.
+libibverbs: Warning: couldn't load driver 'libmlx4-rdmav34.so': libmlx4-rdmav34.so: cannot open shared object file: No such file or directory
+libibverbs: Warning: couldn't load driver 'librxe-rdmav34.so': librxe-rdmav34.so: cannot open shared object file: No such file or directory
+libibverbs: Warning: couldn't load driver 'libmlx4-rdmav34.so': libmlx4-rdmav34.so: cannot open shared object file: No such file or directory
+libibverbs: Warning: couldn't load driver 'libmlx4-rdmav34.so': libmlx4-rdmav34.so: cannot open shared object file: No such file or directory
+libibverbs: Warning: couldn't load driver 'librxe-rdmav34.so': librxe-rdmav34.so: cannot open shared object file: No such file or directory
+libibverbs: Warning: couldn't load driver 'librxe-rdmav34.so': librxe-rdmav34.so: cannot open shared object file: No such file or directory
+libibverbs: Warning: couldn't load driver 'libmlx4-rdmav34.so': libmlx4-rdmav34.so: cannot open shared object file: No such file or directory
+libibverbs: Warning: couldn't load driver 'libmlx4-rdmav34.so': libmlx4-rdmav34.so: cannot open shared object file: No such file or directory
+libibverbs: Warning: couldn't load driver 'libmlx4-rdmav34.so': libmlx4-rdmav34.so: cannot open shared object file: No such file or directory
+libibverbs: Warning: couldn't load driver 'librxe-rdmav34.so': librxe-rdmav34.so: cannot open shared object file: No such file or directory
+libibverbs: Warning: couldn't load driver 'librxe-rdmav34.so': librxe-rdmav34.so: cannot open shared object file: No such file or directory
+libibverbs: Warning: couldn't load driver 'librxe-rdmav34.so': librxe-rdmav34.so: cannot open shared object file: No such file or directory
+libibverbs: Warning: couldn't load driver 'libmlx4-rdmav34.so': libmlx4-rdmav34.so: cannot open shared object file: No such file or directory
+libibverbs: Warning: couldn't load driver 'librxe-rdmav34.so': librxe-rdmav34.so: cannot open shared object file: No such file or directory
+libibverbs: Warning: couldn't load driver 'libmlx4-rdmav34.so': libmlx4-rdmav34.so: cannot open shared object file: No such file or directory
+libibverbs: Warning: couldn't load driver 'librxe-rdmav34.so': librxe-rdmav34.so: cannot open shared object file: No such file or directory
+=> loaded text embedding from path '../data/s3dis/text_embed/s3dis_clip-ViT-B16_id.pth'=> loaded text embedding from path '../data/s3dis/text_embed/s3dis_clip-ViT-B16_id.pth'
+
+=> loaded text embedding from path '../data/s3dis/text_embed/s3dis_clip-ViT-B16_id.pth'
+=> loaded text embedding from path '../data/s3dis/text_embed/s3dis_clip-ViT-B16_id.pth'
+=> loaded text embedding from path '../data/s3dis/text_embed/s3dis_clip-ViT-B16_id.pth'
+=> loaded text embedding from path '../data/s3dis/text_embed/s3dis_clip-ViT-B16_id.pth'
+=> loaded text embedding from path '../data/s3dis/text_embed/s3dis_clip-ViT-B16_id.pth'
+=> loaded text embedding from path '../data/s3dis/text_embed/s3dis_clip-ViT-B16_id.pth'
+2023-09-20 16:27:59,311   INFO  => loaded best metric '0.0' (epoch -1)
+2023-09-20 16:27:59,372   INFO  DistributedDataParallel(
+  (module): SparseUNetTextSeg(
+    (vfe): IndoorVFE()
+    (backbone_3d): SparseUNetIndoor(
+      (input_conv): SparseSequential(
+        (0): SubMConv3d(6, 16, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+      )
+      (unet): UBlock(
+        (blocks): SparseSequential(
+          (block0): ResidualBlock(
+            (i_branch): SparseSequential(
+              (0): Identity()
+            )
+            (conv_branch): SparseSequential(
+              (0): BatchNorm1d(16, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+              (1): ReLU()
+              (2): SubMConv3d(16, 16, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+              (3): BatchNorm1d(16, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+              (4): ReLU()
+              (5): SubMConv3d(16, 16, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+            )
+          )
+          (block1): ResidualBlock(
+            (i_branch): SparseSequential(
+              (0): Identity()
+            )
+            (conv_branch): SparseSequential(
+              (0): BatchNorm1d(16, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+              (1): ReLU()
+              (2): SubMConv3d(16, 16, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+              (3): BatchNorm1d(16, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+              (4): ReLU()
+              (5): SubMConv3d(16, 16, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+            )
+          )
+        )
+        (conv): SparseSequential(
+          (0): BatchNorm1d(16, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+          (1): ReLU()
+          (2): SparseConv3d(16, 32, kernel_size=[2, 2, 2], stride=[2, 2, 2], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        )
+        (u): UBlock(
+          (blocks): SparseSequential(
+            (block0): ResidualBlock(
+              (i_branch): SparseSequential(
+                (0): Identity()
+              )
+              (conv_branch): SparseSequential(
+                (0): BatchNorm1d(32, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                (1): ReLU()
+                (2): SubMConv3d(32, 32, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                (3): BatchNorm1d(32, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                (4): ReLU()
+                (5): SubMConv3d(32, 32, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+              )
+            )
+            (block1): ResidualBlock(
+              (i_branch): SparseSequential(
+                (0): Identity()
+              )
+              (conv_branch): SparseSequential(
+                (0): BatchNorm1d(32, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                (1): ReLU()
+                (2): SubMConv3d(32, 32, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                (3): BatchNorm1d(32, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                (4): ReLU()
+                (5): SubMConv3d(32, 32, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+              )
+            )
+          )
+          (conv): SparseSequential(
+            (0): BatchNorm1d(32, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+            (1): ReLU()
+            (2): SparseConv3d(32, 48, kernel_size=[2, 2, 2], stride=[2, 2, 2], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+          )
+          (u): UBlock(
+            (blocks): SparseSequential(
+              (block0): ResidualBlock(
+                (i_branch): SparseSequential(
+                  (0): Identity()
+                )
+                (conv_branch): SparseSequential(
+                  (0): BatchNorm1d(48, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                  (1): ReLU()
+                  (2): SubMConv3d(48, 48, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                  (3): BatchNorm1d(48, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                  (4): ReLU()
+                  (5): SubMConv3d(48, 48, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                )
+              )
+              (block1): ResidualBlock(
+                (i_branch): SparseSequential(
+                  (0): Identity()
+                )
+                (conv_branch): SparseSequential(
+                  (0): BatchNorm1d(48, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                  (1): ReLU()
+                  (2): SubMConv3d(48, 48, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                  (3): BatchNorm1d(48, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                  (4): ReLU()
+                  (5): SubMConv3d(48, 48, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                )
+              )
+            )
+            (conv): SparseSequential(
+              (0): BatchNorm1d(48, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+              (1): ReLU()
+              (2): SparseConv3d(48, 64, kernel_size=[2, 2, 2], stride=[2, 2, 2], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+            )
+            (u): UBlock(
+              (blocks): SparseSequential(
+                (block0): ResidualBlock(
+                  (i_branch): SparseSequential(
+                    (0): Identity()
+                  )
+                  (conv_branch): SparseSequential(
+                    (0): BatchNorm1d(64, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                    (1): ReLU()
+                    (2): SubMConv3d(64, 64, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                    (3): BatchNorm1d(64, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                    (4): ReLU()
+                    (5): SubMConv3d(64, 64, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                  )
+                )
+                (block1): ResidualBlock(
+                  (i_branch): SparseSequential(
+                    (0): Identity()
+                  )
+                  (conv_branch): SparseSequential(
+                    (0): BatchNorm1d(64, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                    (1): ReLU()
+                    (2): SubMConv3d(64, 64, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                    (3): BatchNorm1d(64, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                    (4): ReLU()
+                    (5): SubMConv3d(64, 64, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                  )
+                )
+              )
+              (conv): SparseSequential(
+                (0): BatchNorm1d(64, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                (1): ReLU()
+                (2): SparseConv3d(64, 80, kernel_size=[2, 2, 2], stride=[2, 2, 2], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+              )
+              (u): UBlock(
+                (blocks): SparseSequential(
+                  (block0): ResidualBlock(
+                    (i_branch): SparseSequential(
+                      (0): Identity()
+                    )
+                    (conv_branch): SparseSequential(
+                      (0): BatchNorm1d(80, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                      (1): ReLU()
+                      (2): SubMConv3d(80, 80, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                      (3): BatchNorm1d(80, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                      (4): ReLU()
+                      (5): SubMConv3d(80, 80, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                    )
+                  )
+                  (block1): ResidualBlock(
+                    (i_branch): SparseSequential(
+                      (0): Identity()
+                    )
+                    (conv_branch): SparseSequential(
+                      (0): BatchNorm1d(80, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                      (1): ReLU()
+                      (2): SubMConv3d(80, 80, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                      (3): BatchNorm1d(80, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                      (4): ReLU()
+                      (5): SubMConv3d(80, 80, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                    )
+                  )
+                )
+                (conv): SparseSequential(
+                  (0): BatchNorm1d(80, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                  (1): ReLU()
+                  (2): SparseConv3d(80, 96, kernel_size=[2, 2, 2], stride=[2, 2, 2], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                )
+                (u): UBlock(
+                  (blocks): SparseSequential(
+                    (block0): ResidualBlock(
+                      (i_branch): SparseSequential(
+                        (0): Identity()
+                      )
+                      (conv_branch): SparseSequential(
+                        (0): BatchNorm1d(96, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                        (1): ReLU()
+                        (2): SubMConv3d(96, 96, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                        (3): BatchNorm1d(96, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                        (4): ReLU()
+                        (5): SubMConv3d(96, 96, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                      )
+                    )
+                    (block1): ResidualBlock(
+                      (i_branch): SparseSequential(
+                        (0): Identity()
+                      )
+                      (conv_branch): SparseSequential(
+                        (0): BatchNorm1d(96, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                        (1): ReLU()
+                        (2): SubMConv3d(96, 96, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                        (3): BatchNorm1d(96, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                        (4): ReLU()
+                        (5): SubMConv3d(96, 96, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                      )
+                    )
+                  )
+                  (conv): SparseSequential(
+                    (0): BatchNorm1d(96, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                    (1): ReLU()
+                    (2): SparseConv3d(96, 112, kernel_size=[2, 2, 2], stride=[2, 2, 2], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                  )
+                  (u): UBlock(
+                    (blocks): SparseSequential(
+                      (block0): ResidualBlock(
+                        (i_branch): SparseSequential(
+                          (0): Identity()
+                        )
+                        (conv_branch): SparseSequential(
+                          (0): BatchNorm1d(112, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                          (1): ReLU()
+                          (2): SubMConv3d(112, 112, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                          (3): BatchNorm1d(112, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                          (4): ReLU()
+                          (5): SubMConv3d(112, 112, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                        )
+                      )
+                      (block1): ResidualBlock(
+                        (i_branch): SparseSequential(
+                          (0): Identity()
+                        )
+                        (conv_branch): SparseSequential(
+                          (0): BatchNorm1d(112, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                          (1): ReLU()
+                          (2): SubMConv3d(112, 112, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                          (3): BatchNorm1d(112, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                          (4): ReLU()
+                          (5): SubMConv3d(112, 112, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                        )
+                      )
+                    )
+                  )
+                  (deconv): SparseSequential(
+                    (0): BatchNorm1d(112, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                    (1): ReLU()
+                    (2): SparseInverseConv3d(112, 96, kernel_size=[2, 2, 2], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                  )
+                  (blocks_tail): SparseSequential(
+                    (block0): ResidualBlock(
+                      (i_branch): SparseSequential(
+                        (0): Custom1x1Subm3d(192, 96, kernel_size=[1, 1, 1], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                      )
+                      (conv_branch): SparseSequential(
+                        (0): BatchNorm1d(192, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                        (1): ReLU()
+                        (2): SubMConv3d(192, 96, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                        (3): BatchNorm1d(96, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                        (4): ReLU()
+                        (5): SubMConv3d(96, 96, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                      )
+                    )
+                    (block1): ResidualBlock(
+                      (i_branch): SparseSequential(
+                        (0): Identity()
+                      )
+                      (conv_branch): SparseSequential(
+                        (0): BatchNorm1d(96, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                        (1): ReLU()
+                        (2): SubMConv3d(96, 96, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                        (3): BatchNorm1d(96, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                        (4): ReLU()
+                        (5): SubMConv3d(96, 96, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                      )
+                    )
+                  )
+                )
+                (deconv): SparseSequential(
+                  (0): BatchNorm1d(96, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                  (1): ReLU()
+                  (2): SparseInverseConv3d(96, 80, kernel_size=[2, 2, 2], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                )
+                (blocks_tail): SparseSequential(
+                  (block0): ResidualBlock(
+                    (i_branch): SparseSequential(
+                      (0): Custom1x1Subm3d(160, 80, kernel_size=[1, 1, 1], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                    )
+                    (conv_branch): SparseSequential(
+                      (0): BatchNorm1d(160, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                      (1): ReLU()
+                      (2): SubMConv3d(160, 80, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                      (3): BatchNorm1d(80, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                      (4): ReLU()
+                      (5): SubMConv3d(80, 80, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                    )
+                  )
+                  (block1): ResidualBlock(
+                    (i_branch): SparseSequential(
+                      (0): Identity()
+                    )
+                    (conv_branch): SparseSequential(
+                      (0): BatchNorm1d(80, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                      (1): ReLU()
+                      (2): SubMConv3d(80, 80, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                      (3): BatchNorm1d(80, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                      (4): ReLU()
+                      (5): SubMConv3d(80, 80, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                    )
+                  )
+                )
+              )
+              (deconv): SparseSequential(
+                (0): BatchNorm1d(80, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                (1): ReLU()
+                (2): SparseInverseConv3d(80, 64, kernel_size=[2, 2, 2], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+              )
+              (blocks_tail): SparseSequential(
+                (block0): ResidualBlock(
+                  (i_branch): SparseSequential(
+                    (0): Custom1x1Subm3d(128, 64, kernel_size=[1, 1, 1], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                  )
+                  (conv_branch): SparseSequential(
+                    (0): BatchNorm1d(128, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                    (1): ReLU()
+                    (2): SubMConv3d(128, 64, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                    (3): BatchNorm1d(64, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                    (4): ReLU()
+                    (5): SubMConv3d(64, 64, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                  )
+                )
+                (block1): ResidualBlock(
+                  (i_branch): SparseSequential(
+                    (0): Identity()
+                  )
+                  (conv_branch): SparseSequential(
+                    (0): BatchNorm1d(64, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                    (1): ReLU()
+                    (2): SubMConv3d(64, 64, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                    (3): BatchNorm1d(64, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                    (4): ReLU()
+                    (5): SubMConv3d(64, 64, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                  )
+                )
+              )
+            )
+            (deconv): SparseSequential(
+              (0): BatchNorm1d(64, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+              (1): ReLU()
+              (2): SparseInverseConv3d(64, 48, kernel_size=[2, 2, 2], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+            )
+            (blocks_tail): SparseSequential(
+              (block0): ResidualBlock(
+                (i_branch): SparseSequential(
+                  (0): Custom1x1Subm3d(96, 48, kernel_size=[1, 1, 1], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                )
+                (conv_branch): SparseSequential(
+                  (0): BatchNorm1d(96, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                  (1): ReLU()
+                  (2): SubMConv3d(96, 48, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                  (3): BatchNorm1d(48, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                  (4): ReLU()
+                  (5): SubMConv3d(48, 48, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                )
+              )
+              (block1): ResidualBlock(
+                (i_branch): SparseSequential(
+                  (0): Identity()
+                )
+                (conv_branch): SparseSequential(
+                  (0): BatchNorm1d(48, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                  (1): ReLU()
+                  (2): SubMConv3d(48, 48, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                  (3): BatchNorm1d(48, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                  (4): ReLU()
+                  (5): SubMConv3d(48, 48, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                )
+              )
+            )
+          )
+          (deconv): SparseSequential(
+            (0): BatchNorm1d(48, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+            (1): ReLU()
+            (2): SparseInverseConv3d(48, 32, kernel_size=[2, 2, 2], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+          )
+          (blocks_tail): SparseSequential(
+            (block0): ResidualBlock(
+              (i_branch): SparseSequential(
+                (0): Custom1x1Subm3d(64, 32, kernel_size=[1, 1, 1], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+              )
+              (conv_branch): SparseSequential(
+                (0): BatchNorm1d(64, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                (1): ReLU()
+                (2): SubMConv3d(64, 32, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                (3): BatchNorm1d(32, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                (4): ReLU()
+                (5): SubMConv3d(32, 32, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+              )
+            )
+            (block1): ResidualBlock(
+              (i_branch): SparseSequential(
+                (0): Identity()
+              )
+              (conv_branch): SparseSequential(
+                (0): BatchNorm1d(32, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                (1): ReLU()
+                (2): SubMConv3d(32, 32, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                (3): BatchNorm1d(32, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                (4): ReLU()
+                (5): SubMConv3d(32, 32, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+              )
+            )
+          )
+        )
+        (deconv): SparseSequential(
+          (0): BatchNorm1d(32, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+          (1): ReLU()
+          (2): SparseInverseConv3d(32, 16, kernel_size=[2, 2, 2], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        )
+        (blocks_tail): SparseSequential(
+          (block0): ResidualBlock(
+            (i_branch): SparseSequential(
+              (0): Custom1x1Subm3d(32, 16, kernel_size=[1, 1, 1], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+            )
+            (conv_branch): SparseSequential(
+              (0): BatchNorm1d(32, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+              (1): ReLU()
+              (2): SubMConv3d(32, 16, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+              (3): BatchNorm1d(16, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+              (4): ReLU()
+              (5): SubMConv3d(16, 16, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+            )
+          )
+          (block1): ResidualBlock(
+            (i_branch): SparseSequential(
+              (0): Identity()
+            )
+            (conv_branch): SparseSequential(
+              (0): BatchNorm1d(16, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+              (1): ReLU()
+              (2): SubMConv3d(16, 16, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+              (3): BatchNorm1d(16, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+              (4): ReLU()
+              (5): SubMConv3d(16, 16, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+            )
+          )
+        )
+      )
+      (output_layer): SparseSequential(
+        (0): BatchNorm1d(16, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+        (1): ReLU()
+      )
+    )
+    (adapter): VLAdapter(
+      (adapter): MLP(
+        (0): Linear(in_features=16, out_features=80, bias=True)
+        (1): BatchNorm1d(80, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+        (2): ReLU()
+        (3): Linear(in_features=80, out_features=512, bias=True)
+        (4): BatchNorm1d(512, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+        (5): ReLU()
+      )
+    )
+    (binary_head): BinaryHead(
+      (binary_encoder): UBlockDecoder(
+        (u): UBlockDecoder(
+          (u): UBlockDecoder(
+            (u): UBlockDecoder(
+              (u): UBlockDecoder(
+                (u): UBlockDecoder(
+                  (u): UBlockDecoder()
+                  (deconv): SparseSequential(
+                    (0): BatchNorm1d(112, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                    (1): ReLU()
+                    (2): SparseInverseConv3d(112, 96, kernel_size=[2, 2, 2], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                  )
+                  (blocks_tail): SparseSequential(
+                    (block0): ResidualBlock(
+                      (i_branch): SparseSequential(
+                        (0): Custom1x1Subm3d(192, 96, kernel_size=[1, 1, 1], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                      )
+                      (conv_branch): SparseSequential(
+                        (0): BatchNorm1d(192, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                        (1): ReLU()
+                        (2): SubMConv3d(192, 96, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                        (3): BatchNorm1d(96, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                        (4): ReLU()
+                        (5): SubMConv3d(96, 96, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                      )
+                    )
+                    (block1): ResidualBlock(
+                      (i_branch): SparseSequential(
+                        (0): Identity()
+                      )
+                      (conv_branch): SparseSequential(
+                        (0): BatchNorm1d(96, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                        (1): ReLU()
+                        (2): SubMConv3d(96, 96, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                        (3): BatchNorm1d(96, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                        (4): ReLU()
+                        (5): SubMConv3d(96, 96, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                      )
+                    )
+                  )
+                )
+                (deconv): SparseSequential(
+                  (0): BatchNorm1d(96, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                  (1): ReLU()
+                  (2): SparseInverseConv3d(96, 80, kernel_size=[2, 2, 2], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                )
+                (blocks_tail): SparseSequential(
+                  (block0): ResidualBlock(
+                    (i_branch): SparseSequential(
+                      (0): Custom1x1Subm3d(160, 80, kernel_size=[1, 1, 1], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                    )
+                    (conv_branch): SparseSequential(
+                      (0): BatchNorm1d(160, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                      (1): ReLU()
+                      (2): SubMConv3d(160, 80, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                      (3): BatchNorm1d(80, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                      (4): ReLU()
+                      (5): SubMConv3d(80, 80, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                    )
+                  )
+                  (block1): ResidualBlock(
+                    (i_branch): SparseSequential(
+                      (0): Identity()
+                    )
+                    (conv_branch): SparseSequential(
+                      (0): BatchNorm1d(80, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                      (1): ReLU()
+                      (2): SubMConv3d(80, 80, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                      (3): BatchNorm1d(80, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                      (4): ReLU()
+                      (5): SubMConv3d(80, 80, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                    )
+                  )
+                )
+              )
+              (deconv): SparseSequential(
+                (0): BatchNorm1d(80, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                (1): ReLU()
+                (2): SparseInverseConv3d(80, 64, kernel_size=[2, 2, 2], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+              )
+              (blocks_tail): SparseSequential(
+                (block0): ResidualBlock(
+                  (i_branch): SparseSequential(
+                    (0): Custom1x1Subm3d(128, 64, kernel_size=[1, 1, 1], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                  )
+                  (conv_branch): SparseSequential(
+                    (0): BatchNorm1d(128, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                    (1): ReLU()
+                    (2): SubMConv3d(128, 64, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                    (3): BatchNorm1d(64, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                    (4): ReLU()
+                    (5): SubMConv3d(64, 64, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                  )
+                )
+                (block1): ResidualBlock(
+                  (i_branch): SparseSequential(
+                    (0): Identity()
+                  )
+                  (conv_branch): SparseSequential(
+                    (0): BatchNorm1d(64, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                    (1): ReLU()
+                    (2): SubMConv3d(64, 64, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                    (3): BatchNorm1d(64, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                    (4): ReLU()
+                    (5): SubMConv3d(64, 64, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                  )
+                )
+              )
+            )
+            (deconv): SparseSequential(
+              (0): BatchNorm1d(64, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+              (1): ReLU()
+              (2): SparseInverseConv3d(64, 48, kernel_size=[2, 2, 2], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+            )
+            (blocks_tail): SparseSequential(
+              (block0): ResidualBlock(
+                (i_branch): SparseSequential(
+                  (0): Custom1x1Subm3d(96, 48, kernel_size=[1, 1, 1], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                )
+                (conv_branch): SparseSequential(
+                  (0): BatchNorm1d(96, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                  (1): ReLU()
+                  (2): SubMConv3d(96, 48, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                  (3): BatchNorm1d(48, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                  (4): ReLU()
+                  (5): SubMConv3d(48, 48, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                )
+              )
+              (block1): ResidualBlock(
+                (i_branch): SparseSequential(
+                  (0): Identity()
+                )
+                (conv_branch): SparseSequential(
+                  (0): BatchNorm1d(48, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                  (1): ReLU()
+                  (2): SubMConv3d(48, 48, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                  (3): BatchNorm1d(48, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                  (4): ReLU()
+                  (5): SubMConv3d(48, 48, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                )
+              )
+            )
+          )
+          (deconv): SparseSequential(
+            (0): BatchNorm1d(48, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+            (1): ReLU()
+            (2): SparseInverseConv3d(48, 32, kernel_size=[2, 2, 2], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+          )
+          (blocks_tail): SparseSequential(
+            (block0): ResidualBlock(
+              (i_branch): SparseSequential(
+                (0): Custom1x1Subm3d(64, 32, kernel_size=[1, 1, 1], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+              )
+              (conv_branch): SparseSequential(
+                (0): BatchNorm1d(64, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                (1): ReLU()
+                (2): SubMConv3d(64, 32, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                (3): BatchNorm1d(32, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                (4): ReLU()
+                (5): SubMConv3d(32, 32, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+              )
+            )
+            (block1): ResidualBlock(
+              (i_branch): SparseSequential(
+                (0): Identity()
+              )
+              (conv_branch): SparseSequential(
+                (0): BatchNorm1d(32, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                (1): ReLU()
+                (2): SubMConv3d(32, 32, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+                (3): BatchNorm1d(32, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+                (4): ReLU()
+                (5): SubMConv3d(32, 32, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+              )
+            )
+          )
+        )
+        (deconv): SparseSequential(
+          (0): BatchNorm1d(32, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+          (1): ReLU()
+          (2): SparseInverseConv3d(32, 16, kernel_size=[2, 2, 2], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+        )
+        (blocks_tail): SparseSequential(
+          (block0): ResidualBlock(
+            (i_branch): SparseSequential(
+              (0): Custom1x1Subm3d(32, 16, kernel_size=[1, 1, 1], stride=[1, 1, 1], padding=[0, 0, 0], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+            )
+            (conv_branch): SparseSequential(
+              (0): BatchNorm1d(32, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+              (1): ReLU()
+              (2): SubMConv3d(32, 16, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+              (3): BatchNorm1d(16, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+              (4): ReLU()
+              (5): SubMConv3d(16, 16, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+            )
+          )
+          (block1): ResidualBlock(
+            (i_branch): SparseSequential(
+              (0): Identity()
+            )
+            (conv_branch): SparseSequential(
+              (0): BatchNorm1d(16, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+              (1): ReLU()
+              (2): SubMConv3d(16, 16, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+              (3): BatchNorm1d(16, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+              (4): ReLU()
+              (5): SubMConv3d(16, 16, kernel_size=[3, 3, 3], stride=[1, 1, 1], padding=[1, 1, 1], dilation=[1, 1, 1], output_padding=[0, 0, 0], bias=False, algo=ConvAlgo.MaskImplicitGemm)
+            )
+          )
+        )
+      )
+      (binary_classifier): SparseSequential(
+        (0): BatchNorm1d(16, eps=0.0001, momentum=0.1, affine=True, track_running_stats=True)
+        (1): ReLU()
+        (2): Linear(in_features=16, out_features=1, bias=True)
+      )
+      (binary_loss_func): BCEWithLogitsLoss()
+    )
+    (task_head): TextSegHead(
+      (cls_head): Linear(in_features=512, out_features=13, bias=False)
+      (seg_loss_func): CrossEntropyLoss()
+    )
+    (inst_head): None
+    (caption_head): CaptionHead(
+      (caption_loss_func): CrossEntropyLoss()
+    )
+  )
+)
+2023-09-20 16:27:59,383   INFO  **********************Start training s3dis_models/spconv_clip_base8_caption_adamw(exp_tag)**********************
+2023-09-20 16:30:22,504   INFO  Epoch [1/32][20/127] LR: 0.004, ETA: 7:59:07, Data: 0.35 (0.91), Iter: 3.28 (7.11), Accuracy: 0.78, loss_seg=0.79, binary_loss=0.58, caption_view=0.00, caption_entity=0.00, loss=1.36, n_captions=0.0(0.0)
+2023-09-20 16:31:29,715   INFO  Epoch [1/32][40/127] LR: 0.004, ETA: 5:50:55, Data: 0.51 (0.63), Iter: 3.88 (5.23), Accuracy: 0.79, loss_seg=0.72, binary_loss=0.48, caption_view=0.00, caption_entity=0.00, loss=1.20, n_captions=0.0(0.0)
+2023-09-20 16:32:36,811   INFO  Epoch [1/32][60/127] LR: 0.004, ETA: 5:07:25, Data: 0.30 (0.54), Iter: 3.18 (4.61), Accuracy: 0.84, loss_seg=0.47, binary_loss=0.44, caption_view=0.00, caption_entity=0.00, loss=0.90, n_captions=0.0(0.0)
+2023-09-20 16:33:44,630   INFO  Epoch [1/32][80/127] LR: 0.004, ETA: 4:45:44, Data: 0.41 (0.50), Iter: 3.46 (4.30), Accuracy: 0.83, loss_seg=0.55, binary_loss=0.38, caption_view=0.00, caption_entity=0.00, loss=0.93, n_captions=0.0(0.0)
+2023-09-20 16:34:50,460   INFO  Epoch [1/32][100/127] LR: 0.004, ETA: 4:30:54, Data: 0.43 (0.47), Iter: 3.25 (4.10), Accuracy: 0.84, loss_seg=0.64, binary_loss=0.38, caption_view=0.00, caption_entity=0.00, loss=1.02, n_captions=0.0(0.0)
+2023-09-20 16:35:58,686   INFO  Epoch [1/32][120/127] LR: 0.004, ETA: 4:21:58, Data: 0.35 (0.45), Iter: 3.61 (3.99), Accuracy: 0.86, loss_seg=0.51, binary_loss=0.40, caption_view=0.00, caption_entity=0.00, loss=0.91, n_captions=0.0(0.0)
+2023-09-20 16:36:20,213   INFO  Epoch [1/32][127/127] LR: 0.004, ETA: 4:18:14, Data: 0.30 (0.44), Iter: 3.23 (3.94), Accuracy: 0.86, loss_seg=0.44, binary_loss=0.39, caption_view=0.00, caption_entity=0.00, loss=0.84, n_captions=0.0(0.0)
+2023-09-20 16:36:20,215   INFO  Train result at epoch [1/32]: mIoU/mPre/mAcc/allPre/allAcc             0.3993/0.5180/0.4740/0.8032/0.8032.
+2023-09-20 16:36:20,215   INFO  Train result at epoch [1/32]: binary_mAcc/binary_allAcc 0.6706/0.8465.
+2023-09-20 16:37:41,057   INFO  Epoch [2/32][20/127] LR: 0.004, ETA: 4:21:13, Data: 0.37 (0.68), Iter: 3.00 (4.00), Accuracy: 0.86, loss_seg=0.44, binary_loss=0.30, caption_view=0.00, caption_entity=0.00, loss=0.74, n_captions=0.0(0.0)
+2023-09-20 16:38:46,232   INFO  Epoch [2/32][40/127] LR: 0.004, ETA: 3:56:02, Data: 0.32 (0.51), Iter: 3.43 (3.63), Accuracy: 0.86, loss_seg=0.51, binary_loss=0.33, caption_view=0.00, caption_entity=0.00, loss=0.84, n_captions=0.0(0.0)
+2023-09-20 16:39:54,004   INFO  Epoch [2/32][60/127] LR: 0.004, ETA: 3:49:19, Data: 0.38 (0.46), Iter: 3.70 (3.55), Accuracy: 0.86, loss_seg=0.44, binary_loss=0.28, caption_view=0.00, caption_entity=0.00, loss=0.72, n_captions=0.0(0.0)
+2023-09-20 16:41:02,738   INFO  Epoch [2/32][80/127] LR: 0.004, ETA: 3:46:22, Data: 0.37 (0.44), Iter: 3.27 (3.52), Accuracy: 0.88, loss_seg=0.41, binary_loss=0.31, caption_view=0.00, caption_entity=0.00, loss=0.71, n_captions=0.0(0.0)
+2023-09-20 16:42:09,307   INFO  Epoch [2/32][100/127] LR: 0.004, ETA: 3:42:42, Data: 0.32 (0.42), Iter: 3.01 (3.48), Accuracy: 0.89, loss_seg=0.39, binary_loss=0.31, caption_view=0.00, caption_entity=0.00, loss=0.70, n_captions=0.0(0.0)
+2023-09-20 16:43:14,993   INFO  Epoch [2/32][120/127] LR: 0.004, ETA: 3:39:26, Data: 0.29 (0.41), Iter: 2.99 (3.45), Accuracy: 0.86, loss_seg=0.51, binary_loss=0.35, caption_view=0.00, caption_entity=0.00, loss=0.86, n_captions=0.0(0.0)
+2023-09-20 16:43:36,691   INFO  Epoch [2/32][127/127] LR: 0.004, ETA: 3:37:49, Data: 0.37 (0.41), Iter: 2.63 (3.43), Accuracy: 0.87, loss_seg=0.32, binary_loss=0.29, caption_view=0.00, caption_entity=0.00, loss=0.62, n_captions=0.0(0.0)
+2023-09-20 16:43:36,692   INFO  Train result at epoch [2/32]: mIoU/mPre/mAcc/allPre/allAcc             0.5272/0.6315/0.5981/0.8657/0.8657.
+2023-09-20 16:43:36,693   INFO  Train result at epoch [2/32]: binary_mAcc/binary_allAcc 0.6725/0.8608.
+2023-09-20 16:44:56,957   INFO  Epoch [3/32][20/127] LR: 0.004, ETA: 4:10:44, Data: 0.38 (0.65), Iter: 3.08 (3.97), Accuracy: 0.88, loss_seg=0.35, binary_loss=0.39, caption_view=0.00, caption_entity=0.00, loss=0.74, n_captions=0.0(0.0)
+2023-09-20 16:46:04,354   INFO  Epoch [3/32][40/127] LR: 0.004, ETA: 3:50:31, Data: 0.35 (0.51), Iter: 3.38 (3.67), Accuracy: 0.87, loss_seg=0.36, binary_loss=0.26, caption_view=0.00, caption_entity=0.00, loss=0.62, n_captions=0.0(0.0)
+2023-09-20 16:47:12,551   INFO  Epoch [3/32][60/127] LR: 0.004, ETA: 3:43:53, Data: 0.40 (0.46), Iter: 3.59 (3.58), Accuracy: 0.91, loss_seg=0.25, binary_loss=0.27, caption_view=0.00, caption_entity=0.00, loss=0.53, n_captions=0.0(0.0)
+2023-09-20 16:48:20,417   INFO  Epoch [3/32][80/127] LR: 0.004, ETA: 3:39:53, Data: 0.37 (0.43), Iter: 3.57 (3.54), Accuracy: 0.90, loss_seg=0.36, binary_loss=0.28, caption_view=0.00, caption_entity=0.00, loss=0.64, n_captions=0.0(0.0)
+2023-09-20 16:49:27,034   INFO  Epoch [3/32][100/127] LR: 0.004, ETA: 3:36:05, Data: 0.35 (0.42), Iter: 3.44 (3.49), Accuracy: 0.90, loss_seg=0.23, binary_loss=0.35, caption_view=0.00, caption_entity=0.00, loss=0.59, n_captions=0.0(0.0)
+2023-09-20 16:50:31,790   INFO  Epoch [3/32][120/127] LR: 0.004, ETA: 3:32:16, Data: 0.32 (0.41), Iter: 2.84 (3.45), Accuracy: 0.90, loss_seg=0.45, binary_loss=0.30, caption_view=0.00, caption_entity=0.00, loss=0.75, n_captions=0.0(0.0)
+2023-09-20 16:50:54,592   INFO  Epoch [3/32][127/127] LR: 0.004, ETA: 3:31:12, Data: 0.30 (0.40), Iter: 3.32 (3.44), Accuracy: 0.89, loss_seg=0.28, binary_loss=0.33, caption_view=0.00, caption_entity=0.00, loss=0.61, n_captions=0.0(0.0)
+2023-09-20 16:50:54,594   INFO  Train result at epoch [3/32]: mIoU/mPre/mAcc/allPre/allAcc             0.5792/0.6704/0.6481/0.8897/0.8897.
+2023-09-20 16:50:54,594   INFO  Train result at epoch [3/32]: binary_mAcc/binary_allAcc 0.7002/0.8719.
+2023-09-20 16:52:14,647   INFO  Epoch [4/32][20/127] LR: 0.004, ETA: 4:01:45, Data: 0.38 (0.69), Iter: 2.94 (3.96), Accuracy: 0.90, loss_seg=0.24, binary_loss=0.23, caption_view=0.00, caption_entity=0.00, loss=0.47, n_captions=0.0(0.0)
+2023-09-20 16:53:21,345   INFO  Epoch [4/32][40/127] LR: 0.004, ETA: 3:41:17, Data: 0.35 (0.52), Iter: 3.27 (3.64), Accuracy: 0.90, loss_seg=0.27, binary_loss=0.27, caption_view=0.00, caption_entity=0.00, loss=0.54, n_captions=0.0(0.0)
+2023-09-20 16:54:28,322   INFO  Epoch [4/32][60/127] LR: 0.004, ETA: 3:34:17, Data: 0.33 (0.47), Iter: 3.16 (3.55), Accuracy: 0.90, loss_seg=0.28, binary_loss=0.24, caption_view=0.00, caption_entity=0.00, loss=0.52, n_captions=0.0(0.0)
+2023-09-20 16:55:38,758   INFO  Epoch [4/32][80/127] LR: 0.004, ETA: 3:32:34, Data: 0.42 (0.44), Iter: 3.56 (3.54), Accuracy: 0.87, loss_seg=0.31, binary_loss=0.27, caption_view=0.00, caption_entity=0.00, loss=0.58, n_captions=0.0(0.0)
+2023-09-20 16:56:46,333   INFO  Epoch [4/32][100/127] LR: 0.004, ETA: 3:29:29, Data: 0.30 (0.43), Iter: 3.56 (3.51), Accuracy: 0.91, loss_seg=0.34, binary_loss=0.26, caption_view=0.00, caption_entity=0.00, loss=0.59, n_captions=0.0(0.0)
+2023-09-20 16:57:51,470   INFO  Epoch [4/32][120/127] LR: 0.004, ETA: 3:25:51, Data: 0.38 (0.42), Iter: 2.84 (3.47), Accuracy: 0.91, loss_seg=0.49, binary_loss=0.22, caption_view=0.00, caption_entity=0.00, loss=0.71, n_captions=0.0(0.0)
+2023-09-20 16:58:12,050   INFO  Epoch [4/32][127/127] LR: 0.004, ETA: 3:23:42, Data: 0.37 (0.41), Iter: 3.18 (3.44), Accuracy: 0.90, loss_seg=0.35, binary_loss=0.27, caption_view=0.00, caption_entity=0.00, loss=0.62, n_captions=0.0(0.0)
+2023-09-20 16:58:12,051   INFO  Train result at epoch [4/32]: mIoU/mPre/mAcc/allPre/allAcc             0.6092/0.8103/0.6725/0.9037/0.9037.
+2023-09-20 16:58:12,052   INFO  Train result at epoch [4/32]: binary_mAcc/binary_allAcc 0.7043/0.8741.
+2023-09-20 16:59:30,691   INFO  Epoch [5/32][20/127] LR: 0.004, ETA: 3:48:33, Data: 0.37 (0.68), Iter: 3.71 (3.88), Accuracy: 0.91, loss_seg=0.27, binary_loss=0.23, caption_view=0.00, caption_entity=0.00, loss=0.49, n_captions=0.0(0.0)
+2023-09-20 17:00:38,862   INFO  Epoch [5/32][40/127] LR: 0.004, ETA: 3:33:28, Data: 0.30 (0.52), Iter: 3.24 (3.64), Accuracy: 0.91, loss_seg=0.19, binary_loss=0.16, caption_view=0.00, caption_entity=0.00, loss=0.35, n_captions=0.0(0.0)
+2023-09-20 17:01:45,211   INFO  Epoch [5/32][60/127] LR: 0.004, ETA: 3:26:07, Data: 0.42 (0.47), Iter: 3.28 (3.54), Accuracy: 0.92, loss_seg=0.31, binary_loss=0.24, caption_view=0.00, caption_entity=0.00, loss=0.55, n_captions=0.0(0.0)
+2023-09-20 17:02:52,344   INFO  Epoch [5/32][80/127] LR: 0.004, ETA: 3:22:13, Data: 0.40 (0.44), Iter: 3.26 (3.49), Accuracy: 0.91, loss_seg=0.20, binary_loss=0.28, caption_view=0.00, caption_entity=0.00, loss=0.48, n_captions=0.0(0.0)
+2023-09-20 17:04:00,748   INFO  Epoch [5/32][100/127] LR: 0.004, ETA: 3:20:13, Data: 0.34 (0.42), Iter: 3.54 (3.48), Accuracy: 0.92, loss_seg=0.13, binary_loss=0.28, caption_view=0.00, caption_entity=0.00, loss=0.41, n_captions=0.0(0.0)
+2023-09-20 17:05:06,016   INFO  Epoch [5/32][120/127] LR: 0.004, ETA: 3:17:02, Data: 0.36 (0.41), Iter: 3.11 (3.44), Accuracy: 0.93, loss_seg=0.22, binary_loss=0.23, caption_view=0.00, caption_entity=0.00, loss=0.45, n_captions=0.0(0.0)
+2023-09-20 17:05:27,248   INFO  Epoch [5/32][127/127] LR: 0.004, ETA: 3:15:20, Data: 0.39 (0.41), Iter: 2.93 (3.42), Accuracy: 0.93, loss_seg=0.23, binary_loss=0.22, caption_view=0.00, caption_entity=0.00, loss=0.45, n_captions=0.0(0.0)
+2023-09-20 17:05:27,250   INFO  Train result at epoch [5/32]: mIoU/mPre/mAcc/allPre/allAcc             0.6673/0.8365/0.7297/0.9141/0.9141.
+2023-09-20 17:05:27,250   INFO  Train result at epoch [5/32]: binary_mAcc/binary_allAcc 0.7086/0.8767.
+2023-09-20 17:05:27,584   INFO  Checkpoint is saved to : /home/zhijiew/codes/3dseg/PLA/output/s3dis_models/spconv_clip_base8_caption_adamw/exp_tag/ckpt. Version: pcseg+0.1.0+3d8494b
+2023-09-20 17:05:27,696   INFO  *************** EPOCH 5 EVALUATION *****************
+eval:   0%|          | 0/9 [00:00<?, ?it/s]eval:   0%|          | 0/9 [00:09<?, ?it/s]eval:  11%|█         | 1/9 [00:09<01:17,  9.70s/it]eval:  11%|█         | 1/9 [00:12<01:17,  9.70s/it]eval:  22%|██▏       | 2/9 [00:12<00:41,  5.91s/it]eval:  22%|██▏       | 2/9 [00:13<00:41,  5.91s/it]eval:  33%|███▎      | 3/9 [00:13<00:21,  3.52s/it]eval:  33%|███▎      | 3/9 [00:14<00:21,  3.52s/it]eval:  44%|████▍     | 4/9 [00:14<00:12,  2.48s/it]eval:  44%|████▍     | 4/9 [00:15<00:12,  2.48s/it]eval:  56%|█████▌    | 5/9 [00:15<00:08,  2.03s/it]eval:  56%|█████▌    | 5/9 [00:16<00:08,  2.03s/it]eval:  67%|██████▋   | 6/9 [00:16<00:05,  1.67s/it]eval:  67%|██████▋   | 6/9 [00:18<00:05,  1.67s/it]eval:  78%|███████▊  | 7/9 [00:18<00:03,  1.66s/it]eval:  78%|███████▊  | 7/9 [00:19<00:03,  1.66s/it]eval:  89%|████████▉ | 8/9 [00:19<00:01,  1.37s/it]eval:  89%|████████▉ | 8/9 [00:20<00:01,  1.37s/it]eval: 100%|██████████| 9/9 [00:20<00:00,  1.28s/it]eval: 100%|██████████| 9/9 [00:20<00:00,  2.28s/it]
+2023-09-20 17:05:48,222   INFO  *************** Performance of EPOCH 5 *****************
+2023-09-20 17:05:48,222   INFO  ----------- base class -----------
+2023-09-20 17:05:48,222   INFO  Class ceiling : iou/acc/b_acc 0.9384/0.9479/0.9838.
+2023-09-20 17:05:48,222   INFO  Class floor : iou/acc/b_acc 0.9493/0.9928/0.9993.
+2023-09-20 17:05:48,222   INFO  Class wall : iou/acc/b_acc 0.5935/0.8009/0.9741.
+2023-09-20 17:05:48,222   INFO  Class beam : iou/acc/b_acc 0.0003/0.0051/0.8702.
+2023-09-20 17:05:48,222   INFO  Class column : iou/acc/b_acc 0.1478/0.1659/0.9703.
+2023-09-20 17:05:48,223   INFO  Class door : iou/acc/b_acc 0.0756/0.0865/0.9811.
+2023-09-20 17:05:48,223   INFO  Class chair : iou/acc/b_acc 0.7625/0.8289/0.8718.
+2023-09-20 17:05:48,223   INFO  Class board : iou/acc/b_acc 0.0756/0.4188/0.9509.
+2023-09-20 17:05:48,223   INFO  ----------- novel class -----------
+2023-09-20 17:05:48,223   INFO  Class window : iou/acc/b_acc 0.0448/0.1290/0.2229.
+2023-09-20 17:05:48,223   INFO  Class table : iou/acc/b_acc 0.2212/0.2395/0.8760.
+2023-09-20 17:05:48,223   INFO  Class sofa : iou/acc/b_acc 0.0281/0.3767/0.6289.
+2023-09-20 17:05:48,223   INFO  Class bookcase : iou/acc/b_acc 0.0442/0.0447/0.7838.
+2023-09-20 17:05:48,223   INFO  -----------------------------------
+2023-09-20 17:05:48,223   INFO  hIoU/mIoU/IoU_base/IoU_novel: 0.1420/0.3234/0.4429/0.0846
+2023-09-20 17:05:48,223   INFO  hAcc/mAcc/Acc_base/Acc_novel: 0.2879/0.4197/0.5308/0.1975
+2023-09-20 17:05:48,224   INFO  binary_mAcc/binary_allAcc: 0.7779/0.9228.
+2023-09-20 17:05:48,370   INFO  ****************Evaluation done.*****************
+2023-09-20 17:05:48,371   INFO  Best epoch: 5, best metric: 0.1420145413037505
+2023-09-20 17:07:08,621   INFO  Epoch [6/32][20/127] LR: 0.004, ETA: 3:46:02, Data: 0.27 (0.66), Iter: 2.88 (3.98), Accuracy: 0.93, loss_seg=0.31, binary_loss=0.22, caption_view=0.00, caption_entity=0.00, loss=0.53, n_captions=0.0(0.0)
+2023-09-20 17:08:15,475   INFO  Epoch [6/32][40/127] LR: 0.004, ETA: 3:26:41, Data: 0.39 (0.50), Iter: 3.61 (3.66), Accuracy: 0.91, loss_seg=0.16, binary_loss=0.30, caption_view=0.00, caption_entity=0.00, loss=0.47, n_captions=0.0(0.0)
+2023-09-20 17:09:23,333   INFO  Epoch [6/32][60/127] LR: 0.004, ETA: 3:20:26, Data: 0.29 (0.46), Iter: 3.87 (3.57), Accuracy: 0.93, loss_seg=0.29, binary_loss=0.30, caption_view=0.00, caption_entity=0.00, loss=0.58, n_captions=0.0(0.0)
+2023-09-20 17:10:29,369   INFO  Epoch [6/32][80/127] LR: 0.004, ETA: 3:15:37, Data: 0.39 (0.44), Iter: 3.09 (3.50), Accuracy: 0.91, loss_seg=0.14, binary_loss=0.21, caption_view=0.00, caption_entity=0.00, loss=0.35, n_captions=0.0(0.0)
+2023-09-20 17:11:36,226   INFO  Epoch [6/32][100/127] LR: 0.004, ETA: 3:12:33, Data: 0.42 (0.42), Iter: 3.27 (3.47), Accuracy: 0.92, loss_seg=0.25, binary_loss=0.18, caption_view=0.00, caption_entity=0.00, loss=0.43, n_captions=0.0(0.0)
+2023-09-20 17:12:42,183   INFO  Epoch [6/32][120/127] LR: 0.004, ETA: 3:09:49, Data: 0.34 (0.41), Iter: 3.03 (3.44), Accuracy: 0.94, loss_seg=0.25, binary_loss=0.19, caption_view=0.00, caption_entity=0.00, loss=0.45, n_captions=0.0(0.0)
+2023-09-20 17:13:03,118   INFO  Epoch [6/32][127/127] LR: 0.004, ETA: 3:08:05, Data: 0.39 (0.41), Iter: 3.09 (3.42), Accuracy: 0.94, loss_seg=0.28, binary_loss=0.19, caption_view=0.00, caption_entity=0.00, loss=0.47, n_captions=0.0(0.0)
+2023-09-20 17:13:03,119   INFO  Train result at epoch [6/32]: mIoU/mPre/mAcc/allPre/allAcc             0.7143/0.8559/0.7793/0.9248/0.9248.
+2023-09-20 17:13:03,120   INFO  Train result at epoch [6/32]: binary_mAcc/binary_allAcc 0.7109/0.8793.
+2023-09-20 17:14:26,265   INFO  Epoch [7/32][20/127] LR: 0.004, ETA: 3:44:15, Data: 0.38 (0.73), Iter: 3.54 (4.10), Accuracy: 0.93, loss_seg=0.21, binary_loss=0.25, caption_view=0.00, caption_entity=0.00, loss=0.47, n_captions=0.0(0.0)
+2023-09-20 17:15:32,379   INFO  Epoch [7/32][40/127] LR: 0.004, ETA: 3:21:17, Data: 0.29 (0.54), Iter: 3.23 (3.70), Accuracy: 0.93, loss_seg=0.17, binary_loss=0.22, caption_view=0.00, caption_entity=0.00, loss=0.39, n_captions=0.0(0.0)
+2023-09-20 17:16:39,158   INFO  Epoch [7/32][60/127] LR: 0.004, ETA: 3:13:38, Data: 0.40 (0.47), Iter: 3.34 (3.58), Accuracy: 0.94, loss_seg=0.27, binary_loss=0.27, caption_view=0.00, caption_entity=0.00, loss=0.53, n_captions=0.0(0.0)
+2023-09-20 17:17:47,114   INFO  Epoch [7/32][80/127] LR: 0.004, ETA: 3:09:50, Data: 0.35 (0.45), Iter: 3.22 (3.54), Accuracy: 0.93, loss_seg=0.17, binary_loss=0.21, caption_view=0.00, caption_entity=0.00, loss=0.38, n_captions=0.0(0.0)
+2023-09-20 17:18:54,106   INFO  Epoch [7/32][100/127] LR: 0.004, ETA: 3:06:42, Data: 0.39 (0.43), Iter: 3.18 (3.50), Accuracy: 0.94, loss_seg=0.12, binary_loss=0.24, caption_view=0.00, caption_entity=0.00, loss=0.36, n_captions=0.0(0.0)
+2023-09-20 17:20:00,669   INFO  Epoch [7/32][120/127] LR: 0.004, ETA: 3:04:01, Data: 0.33 (0.42), Iter: 3.44 (3.47), Accuracy: 0.94, loss_seg=0.16, binary_loss=0.22, caption_view=0.00, caption_entity=0.00, loss=0.38, n_captions=0.0(0.0)
+2023-09-20 17:20:21,774   INFO  Epoch [7/32][127/127] LR: 0.004, ETA: 3:02:17, Data: 0.39 (0.41), Iter: 3.00 (3.44), Accuracy: 0.94, loss_seg=0.13, binary_loss=0.17, caption_view=0.00, caption_entity=0.00, loss=0.30, n_captions=0.0(0.0)
+2023-09-20 17:20:21,776   INFO  Train result at epoch [7/32]: mIoU/mPre/mAcc/allPre/allAcc             0.7352/0.8667/0.7987/0.9300/0.9300.
+2023-09-20 17:20:21,776   INFO  Train result at epoch [7/32]: binary_mAcc/binary_allAcc 0.7127/0.8799.
+2023-09-20 17:21:44,927   INFO  Epoch [8/32][20/127] LR: 0.004, ETA: 3:35:24, Data: 0.35 (0.71), Iter: 3.28 (4.10), Accuracy: 0.95, loss_seg=0.11, binary_loss=0.22, caption_view=0.00, caption_entity=0.00, loss=0.33, n_captions=0.0(0.0)
+2023-09-20 17:22:51,533   INFO  Epoch [8/32][40/127] LR: 0.004, ETA: 3:14:06, Data: 0.31 (0.53), Iter: 3.88 (3.72), Accuracy: 0.94, loss_seg=0.13, binary_loss=0.17, caption_view=0.00, caption_entity=0.00, loss=0.30, n_captions=0.0(0.0)
+2023-09-20 17:23:59,138   INFO  Epoch [8/32][60/127] LR: 0.004, ETA: 3:07:03, Data: 0.36 (0.48), Iter: 3.45 (3.60), Accuracy: 0.94, loss_seg=0.15, binary_loss=0.21, caption_view=0.00, caption_entity=0.00, loss=0.36, n_captions=0.0(0.0)
+2023-09-20 17:25:06,395   INFO  Epoch [8/32][80/127] LR: 0.004, ETA: 3:02:46, Data: 0.30 (0.45), Iter: 3.63 (3.54), Accuracy: 0.92, loss_seg=0.21, binary_loss=0.16, caption_view=0.00, caption_entity=0.00, loss=0.37, n_captions=0.0(0.0)
+2023-09-20 17:26:11,565   INFO  Epoch [8/32][100/127] LR: 0.004, ETA: 2:58:39, Data: 0.28 (0.43), Iter: 3.26 (3.49), Accuracy: 0.94, loss_seg=0.14, binary_loss=0.16, caption_view=0.00, caption_entity=0.00, loss=0.30, n_captions=0.0(0.0)
+2023-09-20 17:27:18,617   INFO  Epoch [8/32][120/127] LR: 0.004, ETA: 2:56:23, Data: 0.31 (0.42), Iter: 3.21 (3.46), Accuracy: 0.95, loss_seg=0.22, binary_loss=0.15, caption_view=0.00, caption_entity=0.00, loss=0.37, n_captions=0.0(0.0)
+2023-09-20 17:27:39,375   INFO  Epoch [8/32][127/127] LR: 0.004, ETA: 2:54:36, Data: 0.36 (0.41), Iter: 2.84 (3.44), Accuracy: 0.95, loss_seg=0.19, binary_loss=0.18, caption_view=0.00, caption_entity=0.00, loss=0.37, n_captions=0.0(0.0)
+2023-09-20 17:27:39,376   INFO  Train result at epoch [8/32]: mIoU/mPre/mAcc/allPre/allAcc             0.7564/0.8781/0.8181/0.9364/0.9364.
+2023-09-20 17:27:39,377   INFO  Train result at epoch [8/32]: binary_mAcc/binary_allAcc 0.7133/0.8805.
+2023-09-20 17:28:57,855   INFO  Epoch [9/32][20/127] LR: 0.004, ETA: 3:15:24, Data: 0.42 (0.69), Iter: 3.37 (3.87), Accuracy: 0.95, loss_seg=0.20, binary_loss=0.18, caption_view=0.00, caption_entity=0.00, loss=0.38, n_captions=0.0(0.0)
+2023-09-20 17:30:05,728   INFO  Epoch [9/32][40/127] LR: 0.004, ETA: 3:01:56, Data: 0.39 (0.52), Iter: 3.51 (3.63), Accuracy: 0.95, loss_seg=0.10, binary_loss=0.14, caption_view=0.00, caption_entity=0.00, loss=0.24, n_captions=0.0(0.0)
+2023-09-20 17:31:14,241   INFO  Epoch [9/32][60/127] LR: 0.004, ETA: 2:57:22, Data: 0.32 (0.47), Iter: 2.85 (3.56), Accuracy: 0.93, loss_seg=0.11, binary_loss=0.19, caption_view=0.00, caption_entity=0.00, loss=0.30, n_captions=0.0(0.0)
+2023-09-20 17:32:20,576   INFO  Epoch [9/32][80/127] LR: 0.004, ETA: 2:52:59, Data: 0.32 (0.44), Iter: 3.02 (3.50), Accuracy: 0.94, loss_seg=0.24, binary_loss=0.20, caption_view=0.00, caption_entity=0.00, loss=0.44, n_captions=0.0(0.0)
+2023-09-20 17:33:27,886   INFO  Epoch [9/32][100/127] LR: 0.004, ETA: 2:50:39, Data: 0.31 (0.43), Iter: 3.25 (3.47), Accuracy: 0.94, loss_seg=0.15, binary_loss=0.18, caption_view=0.00, caption_entity=0.00, loss=0.33, n_captions=0.0(0.0)
+2023-09-20 17:34:33,590   INFO  Epoch [9/32][120/127] LR: 0.004, ETA: 2:48:01, Data: 0.40 (0.41), Iter: 2.87 (3.44), Accuracy: 0.95, loss_seg=0.16, binary_loss=0.14, caption_view=0.00, caption_entity=0.00, loss=0.29, n_captions=0.0(0.0)
+2023-09-20 17:34:55,437   INFO  Epoch [9/32][127/127] LR: 0.004, ETA: 2:46:43, Data: 0.33 (0.41), Iter: 3.13 (3.42), Accuracy: 0.95, loss_seg=0.13, binary_loss=0.26, caption_view=0.00, caption_entity=0.00, loss=0.40, n_captions=0.0(0.0)
+2023-09-20 17:34:55,439   INFO  Train result at epoch [9/32]: mIoU/mPre/mAcc/allPre/allAcc             0.7737/0.8890/0.8331/0.9409/0.9409.
+2023-09-20 17:34:55,439   INFO  Train result at epoch [9/32]: binary_mAcc/binary_allAcc 0.7163/0.8819.
+2023-09-20 17:36:12,503   INFO  Epoch [10/32][20/127] LR: 0.004, ETA: 3:03:29, Data: 0.33 (0.66), Iter: 3.09 (3.80), Accuracy: 0.95, loss_seg=0.10, binary_loss=0.14, caption_view=0.00, caption_entity=0.00, loss=0.25, n_captions=0.0(0.0)
+2023-09-20 17:37:19,855   INFO  Epoch [10/32][40/127] LR: 0.004, ETA: 2:52:03, Data: 0.31 (0.51), Iter: 3.54 (3.58), Accuracy: 0.95, loss_seg=0.11, binary_loss=0.16, caption_view=0.00, caption_entity=0.00, loss=0.28, n_captions=0.0(0.0)
+2023-09-20 17:38:26,576   INFO  Epoch [10/32][60/127] LR: 0.004, ETA: 2:46:51, Data: 0.38 (0.46), Iter: 3.15 (3.50), Accuracy: 0.95, loss_seg=0.29, binary_loss=0.27, caption_view=0.00, caption_entity=0.00, loss=0.56, n_captions=0.0(0.0)
+2023-09-20 17:39:34,063   INFO  Epoch [10/32][80/127] LR: 0.004, ETA: 2:44:12, Data: 0.40 (0.43), Iter: 3.50 (3.47), Accuracy: 0.96, loss_seg=0.08, binary_loss=0.14, caption_view=0.00, caption_entity=0.00, loss=0.23, n_captions=0.0(0.0)
+2023-09-20 17:40:42,472   INFO  Epoch [10/32][100/127] LR: 0.004, ETA: 2:42:38, Data: 0.43 (0.42), Iter: 3.34 (3.46), Accuracy: 0.94, loss_seg=0.16, binary_loss=0.17, caption_view=0.00, caption_entity=0.00, loss=0.34, n_captions=0.0(0.0)
+2023-09-20 17:41:49,998   INFO  Epoch [10/32][120/127] LR: 0.004, ETA: 2:40:49, Data: 0.33 (0.41), Iter: 3.06 (3.44), Accuracy: 0.95, loss_seg=0.22, binary_loss=0.17, caption_view=0.00, caption_entity=0.00, loss=0.39, n_captions=0.0(0.0)
+2023-09-20 17:42:11,794   INFO  Epoch [10/32][127/127] LR: 0.004, ETA: 2:39:34, Data: 0.34 (0.41), Iter: 2.96 (3.43), Accuracy: 0.95, loss_seg=0.16, binary_loss=0.18, caption_view=0.00, caption_entity=0.00, loss=0.34, n_captions=0.0(0.0)
+2023-09-20 17:42:11,795   INFO  Train result at epoch [10/32]: mIoU/mPre/mAcc/allPre/allAcc             0.7882/0.8987/0.8449/0.9450/0.9450.
+2023-09-20 17:42:11,795   INFO  Train result at epoch [10/32]: binary_mAcc/binary_allAcc 0.7179/0.8837.
+2023-09-20 17:42:12,295   INFO  Checkpoint is saved to : /home/zhijiew/codes/3dseg/PLA/output/s3dis_models/spconv_clip_base8_caption_adamw/exp_tag/ckpt. Version: pcseg+0.1.0+3d8494b
+2023-09-20 17:42:12,421   INFO  *************** EPOCH 10 EVALUATION *****************
+eval:   0%|          | 0/9 [00:00<?, ?it/s]eval:   0%|          | 0/9 [00:08<?, ?it/s]eval:  11%|█         | 1/9 [00:08<01:04,  8.00s/it]eval:  11%|█         | 1/9 [00:11<01:04,  8.00s/it]eval:  22%|██▏       | 2/9 [00:11<00:36,  5.23s/it]eval:  22%|██▏       | 2/9 [00:11<00:36,  5.23s/it]eval:  33%|███▎      | 3/9 [00:11<00:18,  3.15s/it]eval:  33%|███▎      | 3/9 [00:12<00:18,  3.15s/it]eval:  44%|████▍     | 4/9 [00:12<00:11,  2.25s/it]eval:  44%|████▍     | 4/9 [00:14<00:11,  2.25s/it]eval:  56%|█████▌    | 5/9 [00:14<00:07,  1.88s/it]eval:  56%|█████▌    | 5/9 [00:15<00:07,  1.88s/it]eval:  67%|██████▋   | 6/9 [00:15<00:04,  1.57s/it]eval:  67%|██████▋   | 6/9 [00:16<00:04,  1.57s/it]eval:  78%|███████▊  | 7/9 [00:16<00:03,  1.58s/it]eval:  78%|███████▊  | 7/9 [00:17<00:03,  1.58s/it]eval:  89%|████████▉ | 8/9 [00:17<00:01,  1.32s/it]eval:  89%|████████▉ | 8/9 [00:18<00:01,  1.32s/it]eval: 100%|██████████| 9/9 [00:18<00:00,  1.24s/it]eval: 100%|██████████| 9/9 [00:18<00:00,  2.07s/it]
+2023-09-20 17:42:31,095   INFO  *************** Performance of EPOCH 10 *****************
+2023-09-20 17:42:31,096   INFO  ----------- base class -----------
+2023-09-20 17:42:31,096   INFO  Class ceiling : iou/acc/b_acc 0.9213/0.9298/0.9652.
+2023-09-20 17:42:31,096   INFO  Class floor : iou/acc/b_acc 0.9688/0.9855/0.9959.
+2023-09-20 17:42:31,096   INFO  Class wall : iou/acc/b_acc 0.7566/0.9615/0.9717.
+2023-09-20 17:42:31,096   INFO  Class beam : iou/acc/b_acc 0.0000/0.0000/0.8896.
+2023-09-20 17:42:31,097   INFO  Class column : iou/acc/b_acc 0.1802/0.1997/0.9853.
+2023-09-20 17:42:31,097   INFO  Class door : iou/acc/b_acc 0.2663/0.3366/0.9801.
+2023-09-20 17:42:31,097   INFO  Class chair : iou/acc/b_acc 0.8095/0.9100/0.9094.
+2023-09-20 17:42:31,097   INFO  Class board : iou/acc/b_acc 0.3609/0.4394/0.9621.
+2023-09-20 17:42:31,097   INFO  ----------- novel class -----------
+2023-09-20 17:42:31,097   INFO  Class window : iou/acc/b_acc 0.0418/0.1389/0.3237.
+2023-09-20 17:42:31,097   INFO  Class table : iou/acc/b_acc 0.1224/0.1309/0.9483.
+2023-09-20 17:42:31,097   INFO  Class sofa : iou/acc/b_acc 0.0316/0.5578/0.7373.
+2023-09-20 17:42:31,097   INFO  Class bookcase : iou/acc/b_acc 0.0181/0.0185/0.8478.
+2023-09-20 17:42:31,098   INFO  -----------------------------------
+2023-09-20 17:42:31,098   INFO  hIoU/mIoU/IoU_base/IoU_novel: 0.0972/0.3731/0.5329/0.0535
+2023-09-20 17:42:31,098   INFO  hAcc/mAcc/Acc_base/Acc_novel: 0.3121/0.4674/0.5953/0.2115
+2023-09-20 17:42:31,098   INFO  binary_mAcc/binary_allAcc: 0.8090/0.9330.
+2023-09-20 17:42:31,122   INFO  ****************Evaluation done.*****************
+2023-09-20 17:42:31,123   INFO  Best epoch: 5, best metric: 0.1420145413037505
+2023-09-20 17:43:50,381   INFO  Epoch [11/32][20/127] LR: 0.004, ETA: 3:01:04, Data: 0.40 (0.65), Iter: 3.24 (3.92), Accuracy: 0.95, loss_seg=0.16, binary_loss=0.14, caption_view=0.00, caption_entity=0.00, loss=0.30, n_captions=0.0(0.0)
+2023-09-20 17:44:58,727   INFO  Epoch [11/32][40/127] LR: 0.004, ETA: 2:48:17, Data: 0.40 (0.50), Iter: 3.01 (3.67), Accuracy: 0.95, loss_seg=0.17, binary_loss=0.20, caption_view=0.00, caption_entity=0.00, loss=0.36, n_captions=0.0(0.0)
+2023-09-20 17:46:05,383   INFO  Epoch [11/32][60/127] LR: 0.004, ETA: 2:41:59, Data: 0.37 (0.46), Iter: 3.29 (3.56), Accuracy: 0.95, loss_seg=0.30, binary_loss=0.20, caption_view=0.00, caption_entity=0.00, loss=0.51, n_captions=0.0(0.0)
+2023-09-20 17:47:11,987   INFO  Epoch [11/32][80/127] LR: 0.004, ETA: 2:38:17, Data: 0.37 (0.43), Iter: 3.49 (3.50), Accuracy: 0.95, loss_seg=0.20, binary_loss=0.12, caption_view=0.00, caption_entity=0.00, loss=0.32, n_captions=0.0(0.0)
+2023-09-20 17:48:19,260   INFO  Epoch [11/32][100/127] LR: 0.004, ETA: 2:35:54, Data: 0.30 (0.41), Iter: 3.39 (3.47), Accuracy: 0.94, loss_seg=0.21, binary_loss=0.13, caption_view=0.00, caption_entity=0.00, loss=0.34, n_captions=0.0(0.0)
+2023-09-20 17:49:25,497   INFO  Epoch [11/32][120/127] LR: 0.004, ETA: 2:33:32, Data: 0.34 (0.40), Iter: 3.40 (3.45), Accuracy: 0.95, loss_seg=0.09, binary_loss=0.11, caption_view=0.00, caption_entity=0.00, loss=0.20, n_captions=0.0(0.0)
+2023-09-20 17:49:47,112   INFO  Epoch [11/32][127/127] LR: 0.004, ETA: 2:32:15, Data: 0.38 (0.40), Iter: 3.29 (3.43), Accuracy: 0.95, loss_seg=0.19, binary_loss=0.19, caption_view=0.00, caption_entity=0.00, loss=0.38, n_captions=0.0(0.0)
+2023-09-20 17:49:47,114   INFO  Train result at epoch [11/32]: mIoU/mPre/mAcc/allPre/allAcc             0.7978/0.9021/0.8557/0.9470/0.9470.
+2023-09-20 17:49:47,114   INFO  Train result at epoch [11/32]: binary_mAcc/binary_allAcc 0.7195/0.8840.
+2023-09-20 17:51:06,188   INFO  Epoch [12/32][20/127] LR: 0.004, ETA: 2:51:53, Data: 0.33 (0.66), Iter: 3.15 (3.90), Accuracy: 0.95, loss_seg=0.11, binary_loss=0.13, caption_view=0.00, caption_entity=0.00, loss=0.24, n_captions=0.0(0.0)
+2023-09-20 17:52:13,414   INFO  Epoch [12/32][40/127] LR: 0.004, ETA: 2:38:52, Data: 0.28 (0.51), Iter: 3.17 (3.63), Accuracy: 0.95, loss_seg=0.14, binary_loss=0.15, caption_view=0.00, caption_entity=0.00, loss=0.29, n_captions=0.0(0.0)
+2023-09-20 17:53:20,277   INFO  Epoch [12/32][60/127] LR: 0.004, ETA: 2:33:31, Data: 0.30 (0.45), Iter: 3.39 (3.53), Accuracy: 0.96, loss_seg=0.21, binary_loss=0.12, caption_view=0.00, caption_entity=0.00, loss=0.34, n_captions=0.0(0.0)
+2023-09-20 17:54:28,019   INFO  Epoch [12/32][80/127] LR: 0.004, ETA: 2:30:47, Data: 0.41 (0.43), Iter: 3.66 (3.50), Accuracy: 0.95, loss_seg=0.09, binary_loss=0.10, caption_view=0.00, caption_entity=0.00, loss=0.19, n_captions=0.0(0.0)
+2023-09-20 17:55:36,672   INFO  Epoch [12/32][100/127] LR: 0.004, ETA: 2:29:02, Data: 0.39 (0.42), Iter: 3.45 (3.48), Accuracy: 0.96, loss_seg=0.08, binary_loss=0.15, caption_view=0.00, caption_entity=0.00, loss=0.24, n_captions=0.0(0.0)
+2023-09-20 17:56:42,742   INFO  Epoch [12/32][120/127] LR: 0.004, ETA: 2:26:37, Data: 0.39 (0.41), Iter: 3.27 (3.45), Accuracy: 0.96, loss_seg=0.11, binary_loss=0.13, caption_view=0.00, caption_entity=0.00, loss=0.24, n_captions=0.0(0.0)
+2023-09-20 17:57:04,175   INFO  Epoch [12/32][127/127] LR: 0.004, ETA: 2:25:18, Data: 0.34 (0.40), Iter: 2.86 (3.43), Accuracy: 0.96, loss_seg=0.11, binary_loss=0.17, caption_view=0.00, caption_entity=0.00, loss=0.27, n_captions=0.0(0.0)
+2023-09-20 17:57:04,176   INFO  Train result at epoch [12/32]: mIoU/mPre/mAcc/allPre/allAcc             0.8082/0.9071/0.8647/0.9497/0.9497.
+2023-09-20 17:57:04,177   INFO  Train result at epoch [12/32]: binary_mAcc/binary_allAcc 0.7207/0.8851.
+2023-09-20 17:58:25,476   INFO  Epoch [13/32][20/127] LR: 0.004, ETA: 2:48:24, Data: 0.35 (0.71), Iter: 3.12 (4.01), Accuracy: 0.96, loss_seg=0.08, binary_loss=0.11, caption_view=0.00, caption_entity=0.00, loss=0.20, n_captions=0.0(0.0)
+2023-09-20 17:59:33,056   INFO  Epoch [13/32][40/127] LR: 0.004, ETA: 2:33:59, Data: 0.40 (0.54), Iter: 3.25 (3.70), Accuracy: 0.95, loss_seg=0.09, binary_loss=0.15, caption_view=0.00, caption_entity=0.00, loss=0.24, n_captions=0.0(0.0)
+2023-09-20 18:00:41,590   INFO  Epoch [13/32][60/127] LR: 0.004, ETA: 2:28:58, Data: 0.33 (0.48), Iter: 3.42 (3.60), Accuracy: 0.95, loss_seg=0.13, binary_loss=0.21, caption_view=0.00, caption_entity=0.00, loss=0.34, n_captions=0.0(0.0)
+2023-09-20 18:01:50,918   INFO  Epoch [13/32][80/127] LR: 0.004, ETA: 2:26:25, Data: 0.32 (0.45), Iter: 3.47 (3.57), Accuracy: 0.95, loss_seg=0.16, binary_loss=0.13, caption_view=0.00, caption_entity=0.00, loss=0.29, n_captions=0.0(0.0)
+2023-09-20 18:02:57,741   INFO  Epoch [13/32][100/127] LR: 0.004, ETA: 2:23:19, Data: 0.35 (0.43), Iter: 3.39 (3.52), Accuracy: 0.95, loss_seg=0.21, binary_loss=0.14, caption_view=0.00, caption_entity=0.00, loss=0.35, n_captions=0.0(0.0)
+2023-09-20 18:04:04,911   INFO  Epoch [13/32][120/127] LR: 0.004, ETA: 2:21:01, Data: 0.35 (0.42), Iter: 3.52 (3.50), Accuracy: 0.95, loss_seg=0.08, binary_loss=0.11, caption_view=0.00, caption_entity=0.00, loss=0.20, n_captions=0.0(0.0)
+2023-09-20 18:04:26,861   INFO  Epoch [13/32][127/127] LR: 0.004, ETA: 2:19:49, Data: 0.30 (0.41), Iter: 3.24 (3.48), Accuracy: 0.96, loss_seg=0.16, binary_loss=0.13, caption_view=0.00, caption_entity=0.00, loss=0.29, n_captions=0.0(0.0)
+2023-09-20 18:04:26,862   INFO  Train result at epoch [13/32]: mIoU/mPre/mAcc/allPre/allAcc             0.8196/0.9151/0.8734/0.9531/0.9531.
+2023-09-20 18:04:26,863   INFO  Train result at epoch [13/32]: binary_mAcc/binary_allAcc 0.7214/0.8857.
+2023-09-20 18:05:43,341   INFO  Epoch [14/32][20/127] LR: 0.004, ETA: 2:30:06, Data: 0.34 (0.60), Iter: 3.56 (3.76), Accuracy: 0.97, loss_seg=0.06, binary_loss=0.16, caption_view=0.00, caption_entity=0.00, loss=0.22, n_captions=0.0(0.0)
+2023-09-20 18:06:50,770   INFO  Epoch [14/32][40/127] LR: 0.004, ETA: 2:21:03, Data: 0.40 (0.48), Iter: 3.30 (3.57), Accuracy: 0.96, loss_seg=0.16, binary_loss=0.17, caption_view=0.00, caption_entity=0.00, loss=0.33, n_captions=0.0(0.0)
+2023-09-20 18:07:57,378   INFO  Epoch [14/32][60/127] LR: 0.004, ETA: 2:16:54, Data: 0.37 (0.44), Iter: 3.29 (3.49), Accuracy: 0.96, loss_seg=0.12, binary_loss=0.11, caption_view=0.00, caption_entity=0.00, loss=0.23, n_captions=0.0(0.0)
+2023-09-20 18:09:03,642   INFO  Epoch [14/32][80/127] LR: 0.004, ETA: 2:13:56, Data: 0.40 (0.42), Iter: 3.14 (3.44), Accuracy: 0.97, loss_seg=0.08, binary_loss=0.10, caption_view=0.00, caption_entity=0.00, loss=0.18, n_captions=0.0(0.0)
+2023-09-20 18:10:08,421   INFO  Epoch [14/32][100/127] LR: 0.004, ETA: 2:11:12, Data: 0.32 (0.41), Iter: 3.21 (3.40), Accuracy: 0.96, loss_seg=0.09, binary_loss=0.10, caption_view=0.00, caption_entity=0.00, loss=0.19, n_captions=0.0(0.0)
+2023-09-20 18:11:16,960   INFO  Epoch [14/32][120/127] LR: 0.004, ETA: 2:10:14, Data: 0.41 (0.40), Iter: 3.25 (3.41), Accuracy: 0.95, loss_seg=0.11, binary_loss=0.12, caption_view=0.00, caption_entity=0.00, loss=0.23, n_captions=0.0(0.0)
+2023-09-20 18:11:38,240   INFO  Epoch [14/32][127/127] LR: 0.004, ETA: 2:09:03, Data: 0.33 (0.40), Iter: 3.33 (3.39), Accuracy: 0.96, loss_seg=0.11, binary_loss=0.15, caption_view=0.00, caption_entity=0.00, loss=0.26, n_captions=0.0(0.0)
+2023-09-20 18:11:38,241   INFO  Train result at epoch [14/32]: mIoU/mPre/mAcc/allPre/allAcc             0.8284/0.9182/0.8815/0.9554/0.9554.
+2023-09-20 18:11:38,241   INFO  Train result at epoch [14/32]: binary_mAcc/binary_allAcc 0.7223/0.8858.
+2023-09-20 18:12:59,333   INFO  Epoch [15/32][20/127] LR: 0.004, ETA: 2:30:46, Data: 0.44 (0.66), Iter: 3.52 (3.99), Accuracy: 0.96, loss_seg=0.11, binary_loss=0.17, caption_view=0.00, caption_entity=0.00, loss=0.28, n_captions=0.0(0.0)
+2023-09-20 18:14:04,396   INFO  Epoch [15/32][40/127] LR: 0.004, ETA: 2:15:38, Data: 0.32 (0.50), Iter: 2.73 (3.62), Accuracy: 0.96, loss_seg=0.07, binary_loss=0.14, caption_view=0.00, caption_entity=0.00, loss=0.22, n_captions=0.0(0.0)
+2023-09-20 18:15:12,755   INFO  Epoch [15/32][60/127] LR: 0.004, ETA: 2:11:52, Data: 0.33 (0.46), Iter: 3.12 (3.55), Accuracy: 0.95, loss_seg=0.16, binary_loss=0.16, caption_view=0.00, caption_entity=0.00, loss=0.31, n_captions=0.0(0.0)
+2023-09-20 18:16:19,765   INFO  Epoch [15/32][80/127] LR: 0.004, ETA: 2:08:52, Data: 0.30 (0.43), Iter: 3.09 (3.51), Accuracy: 0.96, loss_seg=0.11, binary_loss=0.11, caption_view=0.00, caption_entity=0.00, loss=0.21, n_captions=0.0(0.0)
+2023-09-20 18:17:27,569   INFO  Epoch [15/32][100/127] LR: 0.004, ETA: 2:06:49, Data: 0.37 (0.41), Iter: 3.79 (3.48), Accuracy: 0.96, loss_seg=0.12, binary_loss=0.09, caption_view=0.00, caption_entity=0.00, loss=0.21, n_captions=0.0(0.0)
+2023-09-20 18:18:33,769   INFO  Epoch [15/32][120/127] LR: 0.004, ETA: 2:04:38, Data: 0.41 (0.40), Iter: 3.23 (3.45), Accuracy: 0.95, loss_seg=0.14, binary_loss=0.11, caption_view=0.00, caption_entity=0.00, loss=0.25, n_captions=0.0(0.0)
+2023-09-20 18:18:55,822   INFO  Epoch [15/32][127/127] LR: 0.004, ETA: 2:03:37, Data: 0.36 (0.40), Iter: 3.54 (3.44), Accuracy: 0.94, loss_seg=0.17, binary_loss=0.25, caption_view=0.00, caption_entity=0.00, loss=0.43, n_captions=0.0(0.0)
+2023-09-20 18:18:55,823   INFO  Train result at epoch [15/32]: mIoU/mPre/mAcc/allPre/allAcc             0.8311/0.9190/0.8838/0.9563/0.9563.
+2023-09-20 18:18:55,824   INFO  Train result at epoch [15/32]: binary_mAcc/binary_allAcc 0.7233/0.8867.
+2023-09-20 18:18:56,096   INFO  Checkpoint is saved to : /home/zhijiew/codes/3dseg/PLA/output/s3dis_models/spconv_clip_base8_caption_adamw/exp_tag/ckpt. Version: pcseg+0.1.0+3d8494b
+2023-09-20 18:18:56,219   INFO  *************** EPOCH 15 EVALUATION *****************
+eval:   0%|          | 0/9 [00:00<?, ?it/s]eval:   0%|          | 0/9 [00:08<?, ?it/s]eval:  11%|█         | 1/9 [00:08<01:05,  8.21s/it]eval:  11%|█         | 1/9 [00:11<01:05,  8.21s/it]eval:  22%|██▏       | 2/9 [00:11<00:36,  5.26s/it]eval:  22%|██▏       | 2/9 [00:12<00:36,  5.26s/it]eval:  33%|███▎      | 3/9 [00:12<00:19,  3.17s/it]eval:  33%|███▎      | 3/9 [00:12<00:19,  3.17s/it]eval:  44%|████▍     | 4/9 [00:12<00:11,  2.26s/it]eval:  44%|████▍     | 4/9 [00:14<00:11,  2.26s/it]eval:  56%|█████▌    | 5/9 [00:14<00:07,  1.89s/it]eval:  56%|█████▌    | 5/9 [00:15<00:07,  1.89s/it]eval:  67%|██████▋   | 6/9 [00:15<00:04,  1.58s/it]eval:  67%|██████▋   | 6/9 [00:16<00:04,  1.58s/it]eval:  78%|███████▊  | 7/9 [00:16<00:03,  1.58s/it]eval:  78%|███████▊  | 7/9 [00:17<00:03,  1.58s/it]eval:  89%|████████▉ | 8/9 [00:17<00:01,  1.32s/it]eval:  89%|████████▉ | 8/9 [00:18<00:01,  1.32s/it]eval: 100%|██████████| 9/9 [00:18<00:00,  1.24s/it]eval: 100%|██████████| 9/9 [00:18<00:00,  2.10s/it]
+2023-09-20 18:19:15,115   INFO  *************** Performance of EPOCH 15 *****************
+2023-09-20 18:19:15,116   INFO  ----------- base class -----------
+2023-09-20 18:19:15,116   INFO  Class ceiling : iou/acc/b_acc 0.9265/0.9358/0.9683.
+2023-09-20 18:19:15,116   INFO  Class floor : iou/acc/b_acc 0.9667/0.9919/0.9979.
+2023-09-20 18:19:15,116   INFO  Class wall : iou/acc/b_acc 0.7738/0.9579/0.9634.
+2023-09-20 18:19:15,116   INFO  Class beam : iou/acc/b_acc 0.0001/0.0011/0.7971.
+2023-09-20 18:19:15,116   INFO  Class column : iou/acc/b_acc 0.2296/0.2678/0.9566.
+2023-09-20 18:19:15,116   INFO  Class door : iou/acc/b_acc 0.2983/0.3459/0.9770.
+2023-09-20 18:19:15,116   INFO  Class chair : iou/acc/b_acc 0.7976/0.8401/0.8623.
+2023-09-20 18:19:15,116   INFO  Class board : iou/acc/b_acc 0.3783/0.4235/0.8854.
+2023-09-20 18:19:15,116   INFO  ----------- novel class -----------
+2023-09-20 18:19:15,117   INFO  Class window : iou/acc/b_acc 0.0940/0.3215/0.5314.
+2023-09-20 18:19:15,117   INFO  Class table : iou/acc/b_acc 0.0981/0.1032/0.9658.
+2023-09-20 18:19:15,117   INFO  Class sofa : iou/acc/b_acc 0.0336/0.6386/0.8266.
+2023-09-20 18:19:15,117   INFO  Class bookcase : iou/acc/b_acc 0.0182/0.0190/0.8684.
+2023-09-20 18:19:15,117   INFO  -----------------------------------
+2023-09-20 18:19:15,117   INFO  hIoU/mIoU/IoU_base/IoU_novel: 0.1097/0.3846/0.5464/0.0610
+2023-09-20 18:19:15,117   INFO  hAcc/mAcc/Acc_base/Acc_novel: 0.3721/0.4872/0.5955/0.2706
+2023-09-20 18:19:15,117   INFO  binary_mAcc/binary_allAcc: 0.8154/0.9401.
+2023-09-20 18:19:15,151   INFO  ****************Evaluation done.*****************
+2023-09-20 18:19:15,152   INFO  Best epoch: 5, best metric: 0.1420145413037505
+2023-09-20 18:20:35,016   INFO  Epoch [16/32][20/127] LR: 0.004, ETA: 2:20:29, Data: 0.34 (0.67), Iter: 3.86 (3.94), Accuracy: 0.94, loss_seg=0.12, binary_loss=0.12, caption_view=0.00, caption_entity=0.00, loss=0.24, n_captions=0.0(0.0)
+2023-09-20 18:21:42,538   INFO  Epoch [16/32][40/127] LR: 0.004, ETA: 2:09:16, Data: 0.28 (0.52), Iter: 3.26 (3.66), Accuracy: 0.95, loss_seg=0.07, binary_loss=0.10, caption_view=0.00, caption_entity=0.00, loss=0.17, n_captions=0.0(0.0)
+2023-09-20 18:22:50,604   INFO  Epoch [16/32][60/127] LR: 0.004, ETA: 2:05:01, Data: 0.37 (0.46), Iter: 3.50 (3.57), Accuracy: 0.97, loss_seg=0.09, binary_loss=0.17, caption_view=0.00, caption_entity=0.00, loss=0.26, n_captions=0.0(0.0)
+2023-09-20 18:23:56,921   INFO  Epoch [16/32][80/127] LR: 0.004, ETA: 2:01:40, Data: 0.30 (0.44), Iter: 3.49 (3.51), Accuracy: 0.96, loss_seg=0.09, binary_loss=0.13, caption_view=0.00, caption_entity=0.00, loss=0.22, n_captions=0.0(0.0)
+2023-09-20 18:25:05,379   INFO  Epoch [16/32][100/127] LR: 0.004, ETA: 1:59:54, Data: 0.39 (0.42), Iter: 2.96 (3.49), Accuracy: 0.96, loss_seg=0.12, binary_loss=0.15, caption_view=0.00, caption_entity=0.00, loss=0.27, n_captions=0.0(0.0)
+2023-09-20 18:26:13,383   INFO  Epoch [16/32][120/127] LR: 0.004, ETA: 1:58:10, Data: 0.38 (0.41), Iter: 3.29 (3.48), Accuracy: 0.97, loss_seg=0.10, binary_loss=0.14, caption_view=0.00, caption_entity=0.00, loss=0.23, n_captions=0.0(0.0)
+2023-09-20 18:26:34,979   INFO  Epoch [16/32][127/127] LR: 0.004, ETA: 1:57:01, Data: 0.36 (0.41), Iter: 3.16 (3.46), Accuracy: 0.96, loss_seg=0.12, binary_loss=0.10, caption_view=0.00, caption_entity=0.00, loss=0.22, n_captions=0.0(0.0)
+2023-09-20 18:26:34,981   INFO  Train result at epoch [16/32]: mIoU/mPre/mAcc/allPre/allAcc             0.8368/0.9221/0.8891/0.9576/0.9576.
+2023-09-20 18:26:34,981   INFO  Train result at epoch [16/32]: binary_mAcc/binary_allAcc 0.7228/0.8869.
+2023-09-20 18:27:55,018   INFO  Epoch [17/32][20/127] LR: 0.004, ETA: 2:12:27, Data: 0.30 (0.66), Iter: 3.14 (3.95), Accuracy: 0.96, loss_seg=0.28, binary_loss=0.16, caption_view=0.00, caption_entity=0.00, loss=0.45, n_captions=0.0(0.0)
+2023-09-20 18:29:03,185   INFO  Epoch [17/32][40/127] LR: 0.004, ETA: 2:01:56, Data: 0.42 (0.51), Iter: 3.43 (3.67), Accuracy: 0.94, loss_seg=0.17, binary_loss=0.25, caption_view=0.00, caption_entity=0.00, loss=0.42, n_captions=0.0(0.0)
+2023-09-20 18:30:11,070   INFO  Epoch [17/32][60/127] LR: 0.004, ETA: 1:57:44, Data: 0.40 (0.46), Iter: 2.96 (3.58), Accuracy: 0.96, loss_seg=0.11, binary_loss=0.11, caption_view=0.00, caption_entity=0.00, loss=0.22, n_captions=0.0(0.0)
+2023-09-20 18:31:15,896   INFO  Epoch [17/32][80/127] LR: 0.004, ETA: 1:53:44, Data: 0.39 (0.44), Iter: 3.07 (3.50), Accuracy: 0.97, loss_seg=0.11, binary_loss=0.09, caption_view=0.00, caption_entity=0.00, loss=0.20, n_captions=0.0(0.0)
+2023-09-20 18:32:23,273   INFO  Epoch [17/32][100/127] LR: 0.004, ETA: 1:51:46, Data: 0.41 (0.42), Iter: 3.54 (3.47), Accuracy: 0.96, loss_seg=0.12, binary_loss=0.14, caption_view=0.00, caption_entity=0.00, loss=0.26, n_captions=0.0(0.0)
+2023-09-20 18:33:29,583   INFO  Epoch [17/32][120/127] LR: 0.004, ETA: 1:49:46, Data: 0.36 (0.41), Iter: 3.19 (3.45), Accuracy: 0.96, loss_seg=0.10, binary_loss=0.10, caption_view=0.00, caption_entity=0.00, loss=0.20, n_captions=0.0(0.0)
+2023-09-20 18:33:49,949   INFO  Epoch [17/32][127/127] LR: 0.004, ETA: 1:48:27, Data: 0.32 (0.41), Iter: 2.79 (3.42), Accuracy: 0.96, loss_seg=0.10, binary_loss=0.14, caption_view=0.00, caption_entity=0.00, loss=0.23, n_captions=0.0(0.0)
+2023-09-20 18:33:49,950   INFO  Train result at epoch [17/32]: mIoU/mPre/mAcc/allPre/allAcc             0.8440/0.9277/0.8938/0.9592/0.9592.
+2023-09-20 18:33:49,951   INFO  Train result at epoch [17/32]: binary_mAcc/binary_allAcc 0.7245/0.8879.
+2023-09-20 18:35:07,934   INFO  Epoch [18/32][20/127] LR: 0.004, ETA: 2:00:35, Data: 0.37 (0.64), Iter: 3.39 (3.84), Accuracy: 0.95, loss_seg=0.10, binary_loss=0.17, caption_view=0.00, caption_entity=0.00, loss=0.27, n_captions=0.0(0.0)
+2023-09-20 18:36:16,032   INFO  Epoch [18/32][40/127] LR: 0.004, ETA: 1:52:34, Data: 0.32 (0.50), Iter: 3.37 (3.62), Accuracy: 0.96, loss_seg=0.12, binary_loss=0.16, caption_view=0.00, caption_entity=0.00, loss=0.28, n_captions=0.0(0.0)
+2023-09-20 18:37:24,810   INFO  Epoch [18/32][60/127] LR: 0.004, ETA: 1:49:35, Data: 0.39 (0.46), Iter: 3.69 (3.56), Accuracy: 0.96, loss_seg=0.13, binary_loss=0.09, caption_view=0.00, caption_entity=0.00, loss=0.22, n_captions=0.0(0.0)
+2023-09-20 18:38:32,432   INFO  Epoch [18/32][80/127] LR: 0.004, ETA: 1:46:57, Data: 0.40 (0.43), Iter: 3.07 (3.52), Accuracy: 0.96, loss_seg=0.09, binary_loss=0.15, caption_view=0.00, caption_entity=0.00, loss=0.24, n_captions=0.0(0.0)
+2023-09-20 18:39:39,917   INFO  Epoch [18/32][100/127] LR: 0.004, ETA: 1:44:56, Data: 0.37 (0.42), Iter: 3.24 (3.49), Accuracy: 0.95, loss_seg=0.14, binary_loss=0.12, caption_view=0.00, caption_entity=0.00, loss=0.26, n_captions=0.0(0.0)
+2023-09-20 18:40:46,478   INFO  Epoch [18/32][120/127] LR: 0.004, ETA: 1:42:59, Data: 0.36 (0.41), Iter: 3.19 (3.46), Accuracy: 0.97, loss_seg=0.07, binary_loss=0.10, caption_view=0.00, caption_entity=0.00, loss=0.17, n_captions=0.0(0.0)
+2023-09-20 18:41:07,485   INFO  Epoch [18/32][127/127] LR: 0.004, ETA: 1:41:48, Data: 0.36 (0.40), Iter: 3.14 (3.44), Accuracy: 0.96, loss_seg=0.11, binary_loss=0.18, caption_view=0.00, caption_entity=0.00, loss=0.29, n_captions=0.0(0.0)
+2023-09-20 18:41:07,486   INFO  Train result at epoch [18/32]: mIoU/mPre/mAcc/allPre/allAcc             0.8535/0.9303/0.9032/0.9614/0.9614.
+2023-09-20 18:41:07,487   INFO  Train result at epoch [18/32]: binary_mAcc/binary_allAcc 0.7255/0.8888.
+2023-09-20 18:42:26,975   INFO  Epoch [19/32][20/127] LR: 0.004, ETA: 1:54:58, Data: 0.39 (0.72), Iter: 3.62 (3.92), Accuracy: 0.96, loss_seg=0.11, binary_loss=0.12, caption_view=0.00, caption_entity=0.00, loss=0.24, n_captions=0.0(0.0)
+2023-09-20 18:43:34,826   INFO  Epoch [19/32][40/127] LR: 0.004, ETA: 1:45:50, Data: 0.36 (0.54), Iter: 3.22 (3.65), Accuracy: 0.96, loss_seg=0.12, binary_loss=0.11, caption_view=0.00, caption_entity=0.00, loss=0.23, n_captions=0.0(0.0)
+2023-09-20 18:44:41,420   INFO  Epoch [19/32][60/127] LR: 0.004, ETA: 1:41:31, Data: 0.33 (0.48), Iter: 3.43 (3.55), Accuracy: 0.96, loss_seg=0.12, binary_loss=0.10, caption_view=0.00, caption_entity=0.00, loss=0.22, n_captions=0.0(0.0)
+2023-09-20 18:45:48,859   INFO  Epoch [19/32][80/127] LR: 0.004, ETA: 1:39:10, Data: 0.37 (0.45), Iter: 3.16 (3.50), Accuracy: 0.97, loss_seg=0.15, binary_loss=0.11, caption_view=0.00, caption_entity=0.00, loss=0.26, n_captions=0.0(0.0)
+2023-09-20 18:46:54,416   INFO  Epoch [19/32][100/127] LR: 0.004, ETA: 1:36:41, Data: 0.37 (0.43), Iter: 3.03 (3.46), Accuracy: 0.97, loss_seg=0.18, binary_loss=0.10, caption_view=0.00, caption_entity=0.00, loss=0.28, n_captions=0.0(0.0)
+2023-09-20 18:48:01,263   INFO  Epoch [19/32][120/127] LR: 0.004, ETA: 1:35:01, Data: 0.39 (0.42), Iter: 3.25 (3.44), Accuracy: 0.97, loss_seg=0.17, binary_loss=0.11, caption_view=0.00, caption_entity=0.00, loss=0.28, n_captions=0.0(0.0)
+2023-09-20 18:48:23,473   INFO  Epoch [19/32][127/127] LR: 0.004, ETA: 1:34:13, Data: 0.34 (0.41), Iter: 3.07 (3.42), Accuracy: 0.96, loss_seg=0.06, binary_loss=0.12, caption_view=0.00, caption_entity=0.00, loss=0.18, n_captions=0.0(0.0)
+2023-09-20 18:48:23,475   INFO  Train result at epoch [19/32]: mIoU/mPre/mAcc/allPre/allAcc             0.8527/0.9299/0.9028/0.9612/0.9612.
+2023-09-20 18:48:23,476   INFO  Train result at epoch [19/32]: binary_mAcc/binary_allAcc 0.7241/0.8886.
+2023-09-20 18:49:41,596   INFO  Epoch [20/32][20/127] LR: 0.004, ETA: 1:44:26, Data: 0.37 (0.62), Iter: 3.58 (3.84), Accuracy: 0.96, loss_seg=0.09, binary_loss=0.16, caption_view=0.00, caption_entity=0.00, loss=0.26, n_captions=0.0(0.0)
+2023-09-20 18:50:48,427   INFO  Epoch [20/32][40/127] LR: 0.004, ETA: 1:36:25, Data: 0.34 (0.49), Iter: 3.25 (3.59), Accuracy: 0.95, loss_seg=0.13, binary_loss=0.11, caption_view=0.00, caption_entity=0.00, loss=0.25, n_captions=0.0(0.0)
+2023-09-20 18:51:55,117   INFO  Epoch [20/32][60/127] LR: 0.004, ETA: 1:32:58, Data: 0.37 (0.45), Iter: 3.15 (3.51), Accuracy: 0.97, loss_seg=0.06, binary_loss=0.12, caption_view=0.00, caption_entity=0.00, loss=0.18, n_captions=0.0(0.0)
+2023-09-20 18:53:01,928   INFO  Epoch [20/32][80/127] LR: 0.004, ETA: 1:30:43, Data: 0.33 (0.43), Iter: 3.42 (3.47), Accuracy: 0.97, loss_seg=0.09, binary_loss=0.20, caption_view=0.00, caption_entity=0.00, loss=0.30, n_captions=0.0(0.0)
+2023-09-20 18:54:06,820   INFO  Epoch [20/32][100/127] LR: 0.004, ETA: 1:28:25, Data: 0.37 (0.41), Iter: 3.16 (3.42), Accuracy: 0.97, loss_seg=0.13, binary_loss=0.12, caption_view=0.00, caption_entity=0.00, loss=0.25, n_captions=0.0(0.0)
+2023-09-20 18:55:12,685   INFO  Epoch [20/32][120/127] LR: 0.004, ETA: 1:26:44, Data: 0.35 (0.40), Iter: 2.96 (3.40), Accuracy: 0.96, loss_seg=0.04, binary_loss=0.09, caption_view=0.00, caption_entity=0.00, loss=0.13, n_captions=0.0(0.0)
+2023-09-20 18:55:34,160   INFO  Epoch [20/32][127/127] LR: 0.004, ETA: 1:25:53, Data: 0.38 (0.40), Iter: 2.96 (3.38), Accuracy: 0.97, loss_seg=0.08, binary_loss=0.13, caption_view=0.00, caption_entity=0.00, loss=0.21, n_captions=0.0(0.0)
+2023-09-20 18:55:34,162   INFO  Train result at epoch [20/32]: mIoU/mPre/mAcc/allPre/allAcc             0.8639/0.9358/0.9114/0.9639/0.9639.
+2023-09-20 18:55:34,162   INFO  Train result at epoch [20/32]: binary_mAcc/binary_allAcc 0.7268/0.8896.
+2023-09-20 18:55:34,382   INFO  Checkpoint is saved to : /home/zhijiew/codes/3dseg/PLA/output/s3dis_models/spconv_clip_base8_caption_adamw/exp_tag/ckpt. Version: pcseg+0.1.0+3d8494b
+2023-09-20 18:55:34,520   INFO  *************** EPOCH 20 EVALUATION *****************
+eval:   0%|          | 0/9 [00:00<?, ?it/s]eval:   0%|          | 0/9 [00:08<?, ?it/s]eval:  11%|█         | 1/9 [00:08<01:06,  8.33s/it]eval:  11%|█         | 1/9 [00:11<01:06,  8.33s/it]eval:  22%|██▏       | 2/9 [00:11<00:37,  5.34s/it]eval:  22%|██▏       | 2/9 [00:12<00:37,  5.34s/it]eval:  33%|███▎      | 3/9 [00:12<00:19,  3.22s/it]eval:  33%|███▎      | 3/9 [00:13<00:19,  3.22s/it]eval:  44%|████▍     | 4/9 [00:13<00:11,  2.29s/it]eval:  44%|████▍     | 4/9 [00:14<00:11,  2.29s/it]eval:  56%|█████▌    | 5/9 [00:14<00:07,  1.90s/it]eval:  56%|█████▌    | 5/9 [00:15<00:07,  1.90s/it]eval:  67%|██████▋   | 6/9 [00:15<00:04,  1.58s/it]eval:  67%|██████▋   | 6/9 [00:16<00:04,  1.58s/it]eval:  78%|███████▊  | 7/9 [00:16<00:03,  1.61s/it]eval:  78%|███████▊  | 7/9 [00:17<00:03,  1.61s/it]eval:  89%|████████▉ | 8/9 [00:17<00:01,  1.35s/it]eval:  89%|████████▉ | 8/9 [00:18<00:01,  1.35s/it]eval: 100%|██████████| 9/9 [00:18<00:00,  1.26s/it]eval: 100%|██████████| 9/9 [00:19<00:00,  2.12s/it]
+2023-09-20 18:55:53,640   INFO  *************** Performance of EPOCH 20 *****************
+2023-09-20 18:55:53,640   INFO  ----------- base class -----------
+2023-09-20 18:55:53,640   INFO  Class ceiling : iou/acc/b_acc 0.9361/0.9499/0.9753.
+2023-09-20 18:55:53,641   INFO  Class floor : iou/acc/b_acc 0.9685/0.9904/0.9972.
+2023-09-20 18:55:53,641   INFO  Class wall : iou/acc/b_acc 0.8001/0.9564/0.9679.
+2023-09-20 18:55:53,641   INFO  Class beam : iou/acc/b_acc 0.0030/0.0295/0.6971.
+2023-09-20 18:55:53,641   INFO  Class column : iou/acc/b_acc 0.2430/0.3073/0.9601.
+2023-09-20 18:55:53,641   INFO  Class door : iou/acc/b_acc 0.4306/0.4920/0.9038.
+2023-09-20 18:55:53,641   INFO  Class chair : iou/acc/b_acc 0.8345/0.9445/0.9550.
+2023-09-20 18:55:53,641   INFO  Class board : iou/acc/b_acc 0.3932/0.4221/0.8046.
+2023-09-20 18:55:53,641   INFO  ----------- novel class -----------
+2023-09-20 18:55:53,641   INFO  Class window : iou/acc/b_acc 0.0908/0.3171/0.5688.
+2023-09-20 18:55:53,641   INFO  Class table : iou/acc/b_acc 0.0884/0.0920/0.9528.
+2023-09-20 18:55:53,641   INFO  Class sofa : iou/acc/b_acc 0.0298/0.5606/0.7079.
+2023-09-20 18:55:53,642   INFO  Class bookcase : iou/acc/b_acc 0.0064/0.0068/0.8797.
+2023-09-20 18:55:53,642   INFO  -----------------------------------
+2023-09-20 18:55:53,642   INFO  hIoU/mIoU/IoU_base/IoU_novel: 0.0985/0.4020/0.5761/0.0538
+2023-09-20 18:55:53,642   INFO  hAcc/mAcc/Acc_base/Acc_novel: 0.3529/0.5057/0.6365/0.2441
+2023-09-20 18:55:53,642   INFO  binary_mAcc/binary_allAcc: 0.7977/0.9432.
+2023-09-20 18:55:53,668   INFO  ****************Evaluation done.*****************
+2023-09-20 18:55:53,669   INFO  Best epoch: 5, best metric: 0.1420145413037505
+2023-09-20 18:57:16,743   INFO  Epoch [21/32][20/127] LR: 0.004, ETA: 1:42:54, Data: 0.36 (0.76), Iter: 3.26 (4.11), Accuracy: 0.96, loss_seg=0.18, binary_loss=0.15, caption_view=0.00, caption_entity=0.00, loss=0.33, n_captions=0.0(0.0)
+2023-09-20 18:58:23,842   INFO  Epoch [21/32][40/127] LR: 0.004, ETA: 1:32:13, Data: 0.37 (0.56), Iter: 3.56 (3.73), Accuracy: 0.96, loss_seg=0.11, binary_loss=0.13, caption_view=0.00, caption_entity=0.00, loss=0.24, n_captions=0.0(0.0)
+2023-09-20 18:59:31,611   INFO  Epoch [21/32][60/127] LR: 0.004, ETA: 1:28:13, Data: 0.38 (0.49), Iter: 3.68 (3.62), Accuracy: 0.97, loss_seg=0.09, binary_loss=0.15, caption_view=0.00, caption_entity=0.00, loss=0.23, n_captions=0.0(0.0)
+2023-09-20 19:00:37,912   INFO  Epoch [21/32][80/127] LR: 0.004, ETA: 1:25:12, Data: 0.33 (0.46), Iter: 3.10 (3.54), Accuracy: 0.97, loss_seg=0.07, binary_loss=0.09, caption_view=0.00, caption_entity=0.00, loss=0.16, n_captions=0.0(0.0)
+2023-09-20 19:01:45,359   INFO  Epoch [21/32][100/127] LR: 0.004, ETA: 1:23:15, Data: 0.32 (0.44), Iter: 3.06 (3.51), Accuracy: 0.97, loss_seg=0.08, binary_loss=0.10, caption_view=0.00, caption_entity=0.00, loss=0.18, n_captions=0.0(0.0)
+2023-09-20 19:02:51,953   INFO  Epoch [21/32][120/127] LR: 0.004, ETA: 1:21:22, Data: 0.39 (0.42), Iter: 2.99 (3.48), Accuracy: 0.96, loss_seg=0.09, binary_loss=0.13, caption_view=0.00, caption_entity=0.00, loss=0.23, n_captions=0.0(0.0)
+2023-09-20 19:03:13,495   INFO  Epoch [21/32][127/127] LR: 0.004, ETA: 1:20:26, Data: 0.37 (0.42), Iter: 2.99 (3.46), Accuracy: 0.97, loss_seg=0.12, binary_loss=0.09, caption_view=0.00, caption_entity=0.00, loss=0.21, n_captions=0.0(0.0)
+2023-09-20 19:03:13,496   INFO  Train result at epoch [21/32]: mIoU/mPre/mAcc/allPre/allAcc             0.8645/0.9358/0.9119/0.9640/0.9640.
+2023-09-20 19:03:13,497   INFO  Train result at epoch [21/32]: binary_mAcc/binary_allAcc 0.7274/0.8891.
+2023-09-20 19:04:33,748   INFO  Epoch [22/32][20/127] LR: 0.0039, ETA: 1:30:46, Data: 0.38 (0.65), Iter: 3.28 (3.96), Accuracy: 0.97, loss_seg=0.07, binary_loss=0.18, caption_view=0.00, caption_entity=0.00, loss=0.25, n_captions=0.0(0.0)
+2023-09-20 19:05:39,198   INFO  Epoch [22/32][40/127] LR: 0.0039, ETA: 1:21:50, Data: 0.46 (0.50), Iter: 3.41 (3.62), Accuracy: 0.97, loss_seg=0.42, binary_loss=0.27, caption_view=0.00, caption_entity=0.00, loss=0.69, n_captions=0.0(0.0)
+2023-09-20 19:06:46,591   INFO  Epoch [22/32][60/127] LR: 0.0039, ETA: 1:18:41, Data: 0.34 (0.46), Iter: 3.18 (3.53), Accuracy: 0.95, loss_seg=0.22, binary_loss=0.24, caption_view=0.00, caption_entity=0.00, loss=0.46, n_captions=0.0(0.0)
+2023-09-20 19:07:53,919   INFO  Epoch [22/32][80/127] LR: 0.0039, ETA: 1:16:36, Data: 0.38 (0.43), Iter: 3.67 (3.49), Accuracy: 0.97, loss_seg=0.10, binary_loss=0.08, caption_view=0.00, caption_entity=0.00, loss=0.18, n_captions=0.0(0.0)
+2023-09-20 19:09:01,415   INFO  Epoch [22/32][100/127] LR: 0.0039, ETA: 1:14:56, Data: 0.36 (0.42), Iter: 3.52 (3.47), Accuracy: 0.97, loss_seg=0.08, binary_loss=0.19, caption_view=0.00, caption_entity=0.00, loss=0.27, n_captions=0.0(0.0)
+2023-09-20 19:10:06,957   INFO  Epoch [22/32][120/127] LR: 0.0039, ETA: 1:13:06, Data: 0.37 (0.41), Iter: 3.14 (3.44), Accuracy: 0.97, loss_seg=0.06, binary_loss=0.13, caption_view=0.00, caption_entity=0.00, loss=0.19, n_captions=0.0(0.0)
+2023-09-20 19:10:28,328   INFO  Epoch [22/32][127/127] LR: 0.0039, ETA: 1:12:15, Data: 0.34 (0.41), Iter: 3.02 (3.41), Accuracy: 0.97, loss_seg=0.06, binary_loss=0.15, caption_view=0.00, caption_entity=0.00, loss=0.21, n_captions=0.0(0.0)
+2023-09-20 19:10:28,330   INFO  Train result at epoch [22/32]: mIoU/mPre/mAcc/allPre/allAcc             0.8748/0.9393/0.9213/0.9665/0.9665.
+2023-09-20 19:10:28,330   INFO  Train result at epoch [22/32]: binary_mAcc/binary_allAcc 0.7272/0.8901.
+2023-09-20 19:11:48,886   INFO  Epoch [23/32][20/127] LR: 0.0037, ETA: 1:22:37, Data: 0.39 (0.63), Iter: 3.64 (3.97), Accuracy: 0.96, loss_seg=0.07, binary_loss=0.21, caption_view=0.00, caption_entity=0.00, loss=0.28, n_captions=0.0(0.0)
+2023-09-20 19:12:57,748   INFO  Epoch [23/32][40/127] LR: 0.0037, ETA: 1:15:56, Data: 0.37 (0.50), Iter: 3.52 (3.70), Accuracy: 0.97, loss_seg=0.07, binary_loss=0.09, caption_view=0.00, caption_entity=0.00, loss=0.16, n_captions=0.0(0.0)
+2023-09-20 19:14:04,423   INFO  Epoch [23/32][60/127] LR: 0.0037, ETA: 1:12:12, Data: 0.32 (0.45), Iter: 2.98 (3.58), Accuracy: 0.97, loss_seg=0.05, binary_loss=0.11, caption_view=0.00, caption_entity=0.00, loss=0.16, n_captions=0.0(0.0)
+2023-09-20 19:15:12,058   INFO  Epoch [23/32][80/127] LR: 0.0037, ETA: 1:10:01, Data: 0.30 (0.43), Iter: 3.36 (3.53), Accuracy: 0.97, loss_seg=0.09, binary_loss=0.14, caption_view=0.00, caption_entity=0.00, loss=0.23, n_captions=0.0(0.0)
+2023-09-20 19:16:18,561   INFO  Epoch [23/32][100/127] LR: 0.0037, ETA: 1:08:03, Data: 0.38 (0.42), Iter: 3.63 (3.49), Accuracy: 0.96, loss_seg=0.12, binary_loss=0.12, caption_view=0.00, caption_entity=0.00, loss=0.24, n_captions=0.0(0.0)
+2023-09-20 19:17:25,065   INFO  Epoch [23/32][120/127] LR: 0.0037, ETA: 1:06:23, Data: 0.32 (0.41), Iter: 2.79 (3.46), Accuracy: 0.97, loss_seg=0.20, binary_loss=0.16, caption_view=0.00, caption_entity=0.00, loss=0.36, n_captions=0.0(0.0)
+2023-09-20 19:17:46,603   INFO  Epoch [23/32][127/127] LR: 0.0037, ETA: 1:05:34, Data: 0.42 (0.40), Iter: 3.37 (3.44), Accuracy: 0.96, loss_seg=0.14, binary_loss=0.12, caption_view=0.00, caption_entity=0.00, loss=0.26, n_captions=0.0(0.0)
+2023-09-20 19:17:46,604   INFO  Train result at epoch [23/32]: mIoU/mPre/mAcc/allPre/allAcc             0.8744/0.9403/0.9197/0.9669/0.9669.
+2023-09-20 19:17:46,605   INFO  Train result at epoch [23/32]: binary_mAcc/binary_allAcc 0.7283/0.8913.
+2023-09-20 19:19:11,539   INFO  Epoch [24/32][20/127] LR: 0.0034, ETA: 1:18:18, Data: 0.39 (0.69), Iter: 3.85 (4.18), Accuracy: 0.97, loss_seg=0.05, binary_loss=0.12, caption_view=0.00, caption_entity=0.00, loss=0.16, n_captions=0.0(0.0)
+2023-09-20 19:20:17,289   INFO  Epoch [24/32][40/127] LR: 0.0034, ETA: 1:08:40, Data: 0.35 (0.53), Iter: 3.51 (3.74), Accuracy: 0.97, loss_seg=0.06, binary_loss=0.06, caption_view=0.00, caption_entity=0.00, loss=0.12, n_captions=0.0(0.0)
+2023-09-20 19:21:25,493   INFO  Epoch [24/32][60/127] LR: 0.0034, ETA: 1:05:30, Data: 0.37 (0.47), Iter: 3.31 (3.63), Accuracy: 0.97, loss_seg=0.06, binary_loss=0.10, caption_view=0.00, caption_entity=0.00, loss=0.16, n_captions=0.0(0.0)
+2023-09-20 19:22:35,193   INFO  Epoch [24/32][80/127] LR: 0.0034, ETA: 1:03:36, Data: 0.31 (0.45), Iter: 3.38 (3.59), Accuracy: 0.97, loss_seg=0.12, binary_loss=0.12, caption_view=0.00, caption_entity=0.00, loss=0.25, n_captions=0.0(0.0)
+2023-09-20 19:23:40,174   INFO  Epoch [24/32][100/127] LR: 0.0034, ETA: 1:01:16, Data: 0.37 (0.43), Iter: 3.36 (3.52), Accuracy: 0.97, loss_seg=0.08, binary_loss=0.10, caption_view=0.00, caption_entity=0.00, loss=0.18, n_captions=0.0(0.0)
+2023-09-20 19:24:46,527   INFO  Epoch [24/32][120/127] LR: 0.0034, ETA: 0:59:29, Data: 0.30 (0.42), Iter: 2.75 (3.49), Accuracy: 0.97, loss_seg=0.06, binary_loss=0.18, caption_view=0.00, caption_entity=0.00, loss=0.24, n_captions=0.0(0.0)
+2023-09-20 19:25:07,896   INFO  Epoch [24/32][127/127] LR: 0.0034, ETA: 0:58:40, Data: 0.36 (0.41), Iter: 3.02 (3.47), Accuracy: 0.97, loss_seg=0.17, binary_loss=0.13, caption_view=0.00, caption_entity=0.00, loss=0.30, n_captions=0.0(0.0)
+2023-09-20 19:25:07,897   INFO  Train result at epoch [24/32]: mIoU/mPre/mAcc/allPre/allAcc             0.8805/0.9431/0.9247/0.9683/0.9683.
+2023-09-20 19:25:07,898   INFO  Train result at epoch [24/32]: binary_mAcc/binary_allAcc 0.7295/0.8910.
+2023-09-20 19:26:27,980   INFO  Epoch [25/32][20/127] LR: 0.003, ETA: 1:05:27, Data: 0.33 (0.66), Iter: 3.08 (3.94), Accuracy: 0.97, loss_seg=0.09, binary_loss=0.12, caption_view=0.00, caption_entity=0.00, loss=0.20, n_captions=0.0(0.0)
+2023-09-20 19:27:37,412   INFO  Epoch [25/32][40/127] LR: 0.003, ETA: 1:00:15, Data: 0.30 (0.52), Iter: 3.50 (3.70), Accuracy: 0.96, loss_seg=0.08, binary_loss=0.11, caption_view=0.00, caption_entity=0.00, loss=0.19, n_captions=0.0(0.0)
+2023-09-20 19:28:44,042   INFO  Epoch [25/32][60/127] LR: 0.003, ETA: 0:57:02, Data: 0.27 (0.46), Iter: 2.99 (3.58), Accuracy: 0.97, loss_seg=0.07, binary_loss=0.11, caption_view=0.00, caption_entity=0.00, loss=0.17, n_captions=0.0(0.0)
+2023-09-20 19:29:50,416   INFO  Epoch [25/32][80/127] LR: 0.003, ETA: 0:54:49, Data: 0.41 (0.44), Iter: 3.58 (3.51), Accuracy: 0.97, loss_seg=0.09, binary_loss=0.13, caption_view=0.00, caption_entity=0.00, loss=0.22, n_captions=0.0(0.0)
+2023-09-20 19:30:57,351   INFO  Epoch [25/32][100/127] LR: 0.003, ETA: 0:53:09, Data: 0.32 (0.42), Iter: 3.69 (3.48), Accuracy: 0.97, loss_seg=0.12, binary_loss=0.10, caption_view=0.00, caption_entity=0.00, loss=0.21, n_captions=0.0(0.0)
+2023-09-20 19:32:02,632   INFO  Epoch [25/32][120/127] LR: 0.003, ETA: 0:51:26, Data: 0.35 (0.41), Iter: 3.06 (3.44), Accuracy: 0.97, loss_seg=0.09, binary_loss=0.08, caption_view=0.00, caption_entity=0.00, loss=0.17, n_captions=0.0(0.0)
+2023-09-20 19:32:23,923   INFO  Epoch [25/32][127/127] LR: 0.003, ETA: 0:50:43, Data: 0.32 (0.41), Iter: 3.17 (3.42), Accuracy: 0.97, loss_seg=0.08, binary_loss=0.10, caption_view=0.00, caption_entity=0.00, loss=0.18, n_captions=0.0(0.0)
+2023-09-20 19:32:23,924   INFO  Train result at epoch [25/32]: mIoU/mPre/mAcc/allPre/allAcc             0.8863/0.9464/0.9287/0.9695/0.9695.
+2023-09-20 19:32:23,925   INFO  Train result at epoch [25/32]: binary_mAcc/binary_allAcc 0.7294/0.8924.
+2023-09-20 19:32:24,213   INFO  Checkpoint is saved to : /home/zhijiew/codes/3dseg/PLA/output/s3dis_models/spconv_clip_base8_caption_adamw/exp_tag/ckpt. Version: pcseg+0.1.0+3d8494b
+2023-09-20 19:32:24,320   INFO  *************** EPOCH 25 EVALUATION *****************
+eval:   0%|          | 0/9 [00:00<?, ?it/s]eval:   0%|          | 0/9 [00:08<?, ?it/s]eval:  11%|█         | 1/9 [00:08<01:07,  8.45s/it]eval:  11%|█         | 1/9 [00:11<01:07,  8.45s/it]eval:  22%|██▏       | 2/9 [00:11<00:37,  5.40s/it]eval:  22%|██▏       | 2/9 [00:12<00:37,  5.40s/it]eval:  33%|███▎      | 3/9 [00:12<00:19,  3.25s/it]eval:  33%|███▎      | 3/9 [00:13<00:19,  3.25s/it]eval:  44%|████▍     | 4/9 [00:13<00:11,  2.30s/it]eval:  44%|████▍     | 4/9 [00:14<00:11,  2.30s/it]eval:  56%|█████▌    | 5/9 [00:14<00:07,  1.92s/it]eval:  56%|█████▌    | 5/9 [00:15<00:07,  1.92s/it]eval:  67%|██████▋   | 6/9 [00:15<00:04,  1.61s/it]eval:  67%|██████▋   | 6/9 [00:17<00:04,  1.61s/it]eval:  78%|███████▊  | 7/9 [00:17<00:03,  1.63s/it]eval:  78%|███████▊  | 7/9 [00:17<00:03,  1.63s/it]eval:  89%|████████▉ | 8/9 [00:17<00:01,  1.37s/it]eval:  89%|████████▉ | 8/9 [00:19<00:01,  1.37s/it]eval: 100%|██████████| 9/9 [00:19<00:00,  1.27s/it]eval: 100%|██████████| 9/9 [00:19<00:00,  2.15s/it]
+2023-09-20 19:32:43,711   INFO  *************** Performance of EPOCH 25 *****************
+2023-09-20 19:32:43,711   INFO  ----------- base class -----------
+2023-09-20 19:32:43,711   INFO  Class ceiling : iou/acc/b_acc 0.9017/0.9112/0.9707.
+2023-09-20 19:32:43,711   INFO  Class floor : iou/acc/b_acc 0.9502/0.9902/0.9969.
+2023-09-20 19:32:43,711   INFO  Class wall : iou/acc/b_acc 0.8126/0.9621/0.9733.
+2023-09-20 19:32:43,712   INFO  Class beam : iou/acc/b_acc 0.0002/0.0044/0.7855.
+2023-09-20 19:32:43,712   INFO  Class column : iou/acc/b_acc 0.2449/0.2695/0.9574.
+2023-09-20 19:32:43,712   INFO  Class door : iou/acc/b_acc 0.5794/0.7177/0.9650.
+2023-09-20 19:32:43,712   INFO  Class chair : iou/acc/b_acc 0.8089/0.9336/0.9376.
+2023-09-20 19:32:43,712   INFO  Class board : iou/acc/b_acc 0.4118/0.4563/0.8799.
+2023-09-20 19:32:43,712   INFO  ----------- novel class -----------
+2023-09-20 19:32:43,712   INFO  Class window : iou/acc/b_acc 0.1054/0.3629/0.5015.
+2023-09-20 19:32:43,712   INFO  Class table : iou/acc/b_acc 0.0269/0.0274/0.9471.
+2023-09-20 19:32:43,712   INFO  Class sofa : iou/acc/b_acc 0.0242/0.4780/0.6438.
+2023-09-20 19:32:43,712   INFO  Class bookcase : iou/acc/b_acc 0.0211/0.0216/0.8956.
+2023-09-20 19:32:43,713   INFO  -----------------------------------
+2023-09-20 19:32:43,713   INFO  hIoU/mIoU/IoU_base/IoU_novel: 0.0825/0.4073/0.5887/0.0444
+2023-09-20 19:32:43,713   INFO  hAcc/mAcc/Acc_base/Acc_novel: 0.3322/0.5112/0.6556/0.2225
+2023-09-20 19:32:43,713   INFO  binary_mAcc/binary_allAcc: 0.8042/0.9453.
+2023-09-20 19:32:43,816   INFO  ****************Evaluation done.*****************
+2023-09-20 19:32:43,817   INFO  Best epoch: 5, best metric: 0.1420145413037505
+2023-09-20 19:34:03,671   INFO  Epoch [26/32][20/127] LR: 0.0025, ETA: 0:57:12, Data: 0.37 (0.71), Iter: 3.53 (3.95), Accuracy: 0.97, loss_seg=0.06, binary_loss=0.22, caption_view=0.00, caption_entity=0.00, loss=0.28, n_captions=0.0(0.0)
+2023-09-20 19:35:12,416   INFO  Epoch [26/32][40/127] LR: 0.0025, ETA: 0:52:14, Data: 0.33 (0.54), Iter: 3.61 (3.69), Accuracy: 0.97, loss_seg=0.10, binary_loss=0.15, caption_view=0.00, caption_entity=0.00, loss=0.25, n_captions=0.0(0.0)
+2023-09-20 19:36:18,548   INFO  Epoch [26/32][60/127] LR: 0.0025, ETA: 0:49:14, Data: 0.30 (0.48), Iter: 3.15 (3.56), Accuracy: 0.97, loss_seg=0.06, binary_loss=0.13, caption_view=0.00, caption_entity=0.00, loss=0.18, n_captions=0.0(0.0)
+2023-09-20 19:37:25,343   INFO  Epoch [26/32][80/127] LR: 0.0025, ETA: 0:47:17, Data: 0.36 (0.44), Iter: 3.61 (3.51), Accuracy: 0.97, loss_seg=0.05, binary_loss=0.10, caption_view=0.00, caption_entity=0.00, loss=0.16, n_captions=0.0(0.0)
+2023-09-20 19:38:33,648   INFO  Epoch [26/32][100/127] LR: 0.0025, ETA: 0:45:52, Data: 0.40 (0.43), Iter: 3.48 (3.49), Accuracy: 0.97, loss_seg=0.05, binary_loss=0.07, caption_view=0.00, caption_entity=0.00, loss=0.11, n_captions=0.0(0.0)
+2023-09-20 19:39:40,350   INFO  Epoch [26/32][120/127] LR: 0.0025, ETA: 0:44:23, Data: 0.34 (0.41), Iter: 3.54 (3.46), Accuracy: 0.97, loss_seg=0.09, binary_loss=0.10, caption_view=0.00, caption_entity=0.00, loss=0.19, n_captions=0.0(0.0)
+2023-09-20 19:40:01,683   INFO  Epoch [26/32][127/127] LR: 0.0025, ETA: 0:43:41, Data: 0.32 (0.41), Iter: 3.10 (3.44), Accuracy: 0.97, loss_seg=0.06, binary_loss=0.10, caption_view=0.00, caption_entity=0.00, loss=0.16, n_captions=0.0(0.0)
+2023-09-20 19:40:01,684   INFO  Train result at epoch [26/32]: mIoU/mPre/mAcc/allPre/allAcc             0.8928/0.9496/0.9334/0.9714/0.9714.
+2023-09-20 19:40:01,684   INFO  Train result at epoch [26/32]: binary_mAcc/binary_allAcc 0.7302/0.8926.
+2023-09-20 19:41:21,622   INFO  Epoch [27/32][20/127] LR: 0.002, ETA: 0:48:46, Data: 0.35 (0.67), Iter: 3.18 (3.94), Accuracy: 0.97, loss_seg=0.07, binary_loss=0.14, caption_view=0.00, caption_entity=0.00, loss=0.21, n_captions=0.0(0.0)
+2023-09-20 19:42:32,363   INFO  Epoch [27/32][40/127] LR: 0.002, ETA: 0:44:57, Data: 0.32 (0.51), Iter: 4.07 (3.74), Accuracy: 0.97, loss_seg=0.11, binary_loss=0.08, caption_view=0.00, caption_entity=0.00, loss=0.18, n_captions=0.0(0.0)
+2023-09-20 19:43:39,925   INFO  Epoch [27/32][60/127] LR: 0.002, ETA: 0:42:19, Data: 0.32 (0.46), Iter: 3.21 (3.62), Accuracy: 0.97, loss_seg=0.07, binary_loss=0.12, caption_view=0.00, caption_entity=0.00, loss=0.19, n_captions=0.0(0.0)
+2023-09-20 19:44:47,768   INFO  Epoch [27/32][80/127] LR: 0.002, ETA: 0:40:29, Data: 0.35 (0.43), Iter: 3.86 (3.56), Accuracy: 0.97, loss_seg=0.08, binary_loss=0.13, caption_view=0.00, caption_entity=0.00, loss=0.21, n_captions=0.0(0.0)
+2023-09-20 19:45:56,228   INFO  Epoch [27/32][100/127] LR: 0.002, ETA: 0:38:58, Data: 0.39 (0.42), Iter: 3.25 (3.53), Accuracy: 0.97, loss_seg=0.07, binary_loss=0.09, caption_view=0.00, caption_entity=0.00, loss=0.17, n_captions=0.0(0.0)
+2023-09-20 19:47:01,854   INFO  Epoch [27/32][120/127] LR: 0.002, ETA: 0:37:21, Data: 0.33 (0.41), Iter: 3.69 (3.49), Accuracy: 0.97, loss_seg=0.09, binary_loss=0.09, caption_view=0.00, caption_entity=0.00, loss=0.17, n_captions=0.0(0.0)
+2023-09-20 19:47:23,287   INFO  Epoch [27/32][127/127] LR: 0.002, ETA: 0:36:42, Data: 0.34 (0.41), Iter: 3.11 (3.47), Accuracy: 0.98, loss_seg=0.07, binary_loss=0.08, caption_view=0.00, caption_entity=0.00, loss=0.15, n_captions=0.0(0.0)
+2023-09-20 19:47:23,288   INFO  Train result at epoch [27/32]: mIoU/mPre/mAcc/allPre/allAcc             0.9002/0.9526/0.9390/0.9733/0.9733.
+2023-09-20 19:47:23,288   INFO  Train result at epoch [27/32]: binary_mAcc/binary_allAcc 0.7316/0.8934.
+2023-09-20 19:48:47,466   INFO  Epoch [28/32][20/127] LR: 0.0015, ETA: 0:42:26, Data: 0.35 (0.74), Iter: 3.36 (4.14), Accuracy: 0.98, loss_seg=0.06, binary_loss=0.08, caption_view=0.00, caption_entity=0.00, loss=0.14, n_captions=0.0(0.0)
+2023-09-20 19:49:53,927   INFO  Epoch [28/32][40/127] LR: 0.0015, ETA: 0:37:00, Data: 0.31 (0.55), Iter: 3.20 (3.73), Accuracy: 0.98, loss_seg=0.05, binary_loss=0.10, caption_view=0.00, caption_entity=0.00, loss=0.15, n_captions=0.0(0.0)
+2023-09-20 19:51:01,602   INFO  Epoch [28/32][60/127] LR: 0.0015, ETA: 0:34:39, Data: 0.33 (0.49), Iter: 3.43 (3.62), Accuracy: 0.97, loss_seg=0.09, binary_loss=0.07, caption_view=0.00, caption_entity=0.00, loss=0.16, n_captions=0.0(0.0)
+2023-09-20 19:52:08,851   INFO  Epoch [28/32][80/127] LR: 0.0015, ETA: 0:32:52, Data: 0.36 (0.46), Iter: 2.90 (3.55), Accuracy: 0.97, loss_seg=0.05, binary_loss=0.06, caption_view=0.00, caption_entity=0.00, loss=0.12, n_captions=0.0(0.0)
+2023-09-20 19:53:13,763   INFO  Epoch [28/32][100/127] LR: 0.0015, ETA: 0:31:07, Data: 0.30 (0.44), Iter: 3.56 (3.49), Accuracy: 0.98, loss_seg=0.11, binary_loss=0.12, caption_view=0.00, caption_entity=0.00, loss=0.23, n_captions=0.0(0.0)
+2023-09-20 19:54:20,861   INFO  Epoch [28/32][120/127] LR: 0.0015, ETA: 0:29:47, Data: 0.33 (0.42), Iter: 3.01 (3.47), Accuracy: 0.98, loss_seg=0.05, binary_loss=0.13, caption_view=0.00, caption_entity=0.00, loss=0.18, n_captions=0.0(0.0)
+2023-09-20 19:54:41,004   INFO  Epoch [28/32][127/127] LR: 0.0015, ETA: 0:29:05, Data: 0.36 (0.42), Iter: 2.74 (3.44), Accuracy: 0.97, loss_seg=0.05, binary_loss=0.10, caption_view=0.00, caption_entity=0.00, loss=0.15, n_captions=0.0(0.0)
+2023-09-20 19:54:41,005   INFO  Train result at epoch [28/32]: mIoU/mPre/mAcc/allPre/allAcc             0.9049/0.9549/0.9425/0.9744/0.9744.
+2023-09-20 19:54:41,006   INFO  Train result at epoch [28/32]: binary_mAcc/binary_allAcc 0.7315/0.8937.
+2023-09-20 19:56:04,357   INFO  Epoch [29/32][20/127] LR: 0.001, ETA: 0:33:25, Data: 0.40 (0.73), Iter: 3.60 (4.11), Accuracy: 0.97, loss_seg=0.06, binary_loss=0.10, caption_view=0.00, caption_entity=0.00, loss=0.15, n_captions=0.0(0.0)
+2023-09-20 19:57:11,870   INFO  Epoch [29/32][40/127] LR: 0.001, ETA: 0:29:10, Data: 0.38 (0.54), Iter: 3.31 (3.74), Accuracy: 0.98, loss_seg=0.10, binary_loss=0.11, caption_view=0.00, caption_entity=0.00, loss=0.21, n_captions=0.0(0.0)
+2023-09-20 19:58:18,879   INFO  Epoch [29/32][60/127] LR: 0.001, ETA: 0:26:58, Data: 0.39 (0.48), Iter: 3.32 (3.61), Accuracy: 0.98, loss_seg=0.07, binary_loss=0.12, caption_view=0.00, caption_entity=0.00, loss=0.19, n_captions=0.0(0.0)
+2023-09-20 19:59:26,375   INFO  Epoch [29/32][80/127] LR: 0.001, ETA: 0:25:20, Data: 0.35 (0.45), Iter: 2.76 (3.55), Accuracy: 0.98, loss_seg=0.04, binary_loss=0.07, caption_view=0.00, caption_entity=0.00, loss=0.11, n_captions=0.0(0.0)
+2023-09-20 20:00:31,757   INFO  Epoch [29/32][100/127] LR: 0.001, ETA: 0:23:46, Data: 0.37 (0.44), Iter: 3.44 (3.50), Accuracy: 0.98, loss_seg=0.05, binary_loss=0.10, caption_view=0.00, caption_entity=0.00, loss=0.15, n_captions=0.0(0.0)
+2023-09-20 20:01:37,783   INFO  Epoch [29/32][120/127] LR: 0.001, ETA: 0:22:23, Data: 0.32 (0.42), Iter: 3.28 (3.46), Accuracy: 0.97, loss_seg=0.07, binary_loss=0.09, caption_view=0.00, caption_entity=0.00, loss=0.16, n_captions=0.0(0.0)
+2023-09-20 20:01:59,312   INFO  Epoch [29/32][127/127] LR: 0.001, ETA: 0:21:51, Data: 0.30 (0.42), Iter: 2.90 (3.44), Accuracy: 0.97, loss_seg=0.05, binary_loss=0.07, caption_view=0.00, caption_entity=0.00, loss=0.13, n_captions=0.0(0.0)
+2023-09-20 20:01:59,313   INFO  Train result at epoch [29/32]: mIoU/mPre/mAcc/allPre/allAcc             0.9084/0.9568/0.9447/0.9751/0.9751.
+2023-09-20 20:01:59,313   INFO  Train result at epoch [29/32]: binary_mAcc/binary_allAcc 0.7333/0.8939.
+2023-09-20 20:03:18,095   INFO  Epoch [30/32][20/127] LR: 0.00059, ETA: 0:23:23, Data: 0.32 (0.61), Iter: 3.42 (3.89), Accuracy: 0.97, loss_seg=0.08, binary_loss=0.10, caption_view=0.00, caption_entity=0.00, loss=0.18, n_captions=0.0(0.0)
+2023-09-20 20:04:25,130   INFO  Epoch [30/32][40/127] LR: 0.00059, ETA: 0:20:33, Data: 0.29 (0.49), Iter: 3.41 (3.62), Accuracy: 0.98, loss_seg=0.10, binary_loss=0.14, caption_view=0.00, caption_entity=0.00, loss=0.23, n_captions=0.0(0.0)
+2023-09-20 20:05:30,568   INFO  Epoch [30/32][60/127] LR: 0.00059, ETA: 0:18:43, Data: 0.37 (0.45), Iter: 3.52 (3.50), Accuracy: 0.98, loss_seg=0.06, binary_loss=0.07, caption_view=0.00, caption_entity=0.00, loss=0.12, n_captions=0.0(0.0)
+2023-09-20 20:06:37,321   INFO  Epoch [30/32][80/127] LR: 0.00059, ETA: 0:17:21, Data: 0.37 (0.43), Iter: 3.65 (3.46), Accuracy: 0.97, loss_seg=0.06, binary_loss=0.08, caption_view=0.00, caption_entity=0.00, loss=0.14, n_captions=0.0(0.0)
+2023-09-20 20:07:43,037   INFO  Epoch [30/32][100/127] LR: 0.00059, ETA: 0:16:02, Data: 0.39 (0.41), Iter: 3.36 (3.43), Accuracy: 0.97, loss_seg=0.08, binary_loss=0.13, caption_view=0.00, caption_entity=0.00, loss=0.21, n_captions=0.0(0.0)
+2023-09-20 20:08:49,758   INFO  Epoch [30/32][120/127] LR: 0.00059, ETA: 0:14:50, Data: 0.40 (0.41), Iter: 3.35 (3.41), Accuracy: 0.97, loss_seg=0.05, binary_loss=0.07, caption_view=0.00, caption_entity=0.00, loss=0.12, n_captions=0.0(0.0)
+2023-09-20 20:09:10,935   INFO  Epoch [30/32][127/127] LR: 0.00059, ETA: 0:14:20, Data: 0.35 (0.40), Iter: 3.12 (3.39), Accuracy: 0.98, loss_seg=0.06, binary_loss=0.09, caption_view=0.00, caption_entity=0.00, loss=0.15, n_captions=0.0(0.0)
+2023-09-20 20:09:10,936   INFO  Train result at epoch [30/32]: mIoU/mPre/mAcc/allPre/allAcc             0.9128/0.9589/0.9477/0.9761/0.9761.
+2023-09-20 20:09:10,936   INFO  Train result at epoch [30/32]: binary_mAcc/binary_allAcc 0.7330/0.8944.
+2023-09-20 20:09:11,190   INFO  Checkpoint is saved to : /home/zhijiew/codes/3dseg/PLA/output/s3dis_models/spconv_clip_base8_caption_adamw/exp_tag/ckpt. Version: pcseg+0.1.0+3d8494b
+2023-09-20 20:09:11,290   INFO  *************** EPOCH 30 EVALUATION *****************
+eval:   0%|          | 0/9 [00:00<?, ?it/s]eval:   0%|          | 0/9 [00:08<?, ?it/s]eval:  11%|█         | 1/9 [00:08<01:06,  8.29s/it]eval:  11%|█         | 1/9 [00:11<01:06,  8.29s/it]eval:  22%|██▏       | 2/9 [00:11<00:37,  5.31s/it]eval:  22%|██▏       | 2/9 [00:12<00:37,  5.31s/it]eval:  33%|███▎      | 3/9 [00:12<00:19,  3.20s/it]eval:  33%|███▎      | 3/9 [00:13<00:19,  3.20s/it]eval:  44%|████▍     | 4/9 [00:13<00:11,  2.27s/it]eval:  44%|████▍     | 4/9 [00:14<00:11,  2.27s/it]eval:  56%|█████▌    | 5/9 [00:14<00:07,  1.88s/it]eval:  56%|█████▌    | 5/9 [00:15<00:07,  1.88s/it]eval:  67%|██████▋   | 6/9 [00:15<00:04,  1.56s/it]eval:  67%|██████▋   | 6/9 [00:16<00:04,  1.56s/it]eval:  78%|███████▊  | 7/9 [00:16<00:03,  1.59s/it]eval:  78%|███████▊  | 7/9 [00:17<00:03,  1.59s/it]eval:  89%|████████▉ | 8/9 [00:17<00:01,  1.33s/it]eval:  89%|████████▉ | 8/9 [00:18<00:01,  1.33s/it]eval: 100%|██████████| 9/9 [00:18<00:00,  1.25s/it]eval: 100%|██████████| 9/9 [00:18<00:00,  2.10s/it]
+2023-09-20 20:09:30,215   INFO  *************** Performance of EPOCH 30 *****************
+2023-09-20 20:09:30,216   INFO  ----------- base class -----------
+2023-09-20 20:09:30,216   INFO  Class ceiling : iou/acc/b_acc 0.9382/0.9472/0.9786.
+2023-09-20 20:09:30,216   INFO  Class floor : iou/acc/b_acc 0.9711/0.9917/0.9973.
+2023-09-20 20:09:30,216   INFO  Class wall : iou/acc/b_acc 0.8192/0.9675/0.9732.
+2023-09-20 20:09:30,216   INFO  Class beam : iou/acc/b_acc 0.0038/0.0230/0.6071.
+2023-09-20 20:09:30,216   INFO  Class column : iou/acc/b_acc 0.2284/0.2453/0.9510.
+2023-09-20 20:09:30,216   INFO  Class door : iou/acc/b_acc 0.5445/0.6235/0.9422.
+2023-09-20 20:09:30,216   INFO  Class chair : iou/acc/b_acc 0.8415/0.9462/0.9590.
+2023-09-20 20:09:30,216   INFO  Class board : iou/acc/b_acc 0.3915/0.4407/0.8844.
+2023-09-20 20:09:30,217   INFO  ----------- novel class -----------
+2023-09-20 20:09:30,217   INFO  Class window : iou/acc/b_acc 0.1218/0.4272/0.6276.
+2023-09-20 20:09:30,217   INFO  Class table : iou/acc/b_acc 0.0223/0.0232/0.9515.
+2023-09-20 20:09:30,217   INFO  Class sofa : iou/acc/b_acc 0.0277/0.5338/0.7183.
+2023-09-20 20:09:30,217   INFO  Class bookcase : iou/acc/b_acc 0.0185/0.0194/0.9099.
+2023-09-20 20:09:30,217   INFO  -----------------------------------
+2023-09-20 20:09:30,217   INFO  hIoU/mIoU/IoU_base/IoU_novel: 0.0881/0.4107/0.5923/0.0476
+2023-09-20 20:09:30,217   INFO  hAcc/mAcc/Acc_base/Acc_novel: 0.3618/0.5157/0.6481/0.2509
+2023-09-20 20:09:30,217   INFO  binary_mAcc/binary_allAcc: 0.8077/0.9535.
+2023-09-20 20:09:30,243   INFO  ****************Evaluation done.*****************
+2023-09-20 20:09:30,243   INFO  Best epoch: 5, best metric: 0.1420145413037505
+2023-09-20 20:10:50,057   INFO  Epoch [31/32][20/127] LR: 0.00027, ETA: 0:15:21, Data: 0.40 (0.67), Iter: 3.70 (3.94), Accuracy: 0.98, loss_seg=0.11, binary_loss=0.08, caption_view=0.00, caption_entity=0.00, loss=0.19, n_captions=0.0(0.0)
+2023-09-20 20:11:57,776   INFO  Epoch [31/32][40/127] LR: 0.00027, ETA: 0:13:03, Data: 0.39 (0.52), Iter: 3.10 (3.66), Accuracy: 0.98, loss_seg=0.07, binary_loss=0.08, caption_view=0.00, caption_entity=0.00, loss=0.15, n_captions=0.0(0.0)
+2023-09-20 20:13:04,536   INFO  Epoch [31/32][60/127] LR: 0.00027, ETA: 0:11:29, Data: 0.36 (0.46), Iter: 3.40 (3.55), Accuracy: 0.98, loss_seg=0.12, binary_loss=0.09, caption_view=0.00, caption_entity=0.00, loss=0.21, n_captions=0.0(0.0)
+2023-09-20 20:14:10,877   INFO  Epoch [31/32][80/127] LR: 0.00027, ETA: 0:10:07, Data: 0.34 (0.44), Iter: 3.25 (3.49), Accuracy: 0.98, loss_seg=0.09, binary_loss=0.11, caption_view=0.00, caption_entity=0.00, loss=0.20, n_captions=0.0(0.0)
+2023-09-20 20:15:16,564   INFO  Epoch [31/32][100/127] LR: 0.00027, ETA: 0:08:52, Data: 0.41 (0.42), Iter: 3.21 (3.45), Accuracy: 0.98, loss_seg=0.08, binary_loss=0.08, caption_view=0.00, caption_entity=0.00, loss=0.16, n_captions=0.0(0.0)
+2023-09-20 20:16:24,866   INFO  Epoch [31/32][120/127] LR: 0.00027, ETA: 0:07:41, Data: 0.33 (0.41), Iter: 2.90 (3.45), Accuracy: 0.98, loss_seg=0.08, binary_loss=0.06, caption_view=0.00, caption_entity=0.00, loss=0.14, n_captions=0.0(0.0)
+2023-09-20 20:16:46,149   INFO  Epoch [31/32][127/127] LR: 0.00027, ETA: 0:07:14, Data: 0.36 (0.41), Iter: 2.99 (3.42), Accuracy: 0.98, loss_seg=0.05, binary_loss=0.06, caption_view=0.00, caption_entity=0.00, loss=0.10, n_captions=0.0(0.0)
+2023-09-20 20:16:46,151   INFO  Train result at epoch [31/32]: mIoU/mPre/mAcc/allPre/allAcc             0.9160/0.9605/0.9497/0.9770/0.9770.
+2023-09-20 20:16:46,151   INFO  Train result at epoch [31/32]: binary_mAcc/binary_allAcc 0.7331/0.8945.
+2023-09-20 20:18:07,657   INFO  Epoch [32/32][20/127] LR: 6.9e-05, ETA: 0:07:10, Data: 0.45 (0.68), Iter: 3.77 (4.02), Accuracy: 0.97, loss_seg=0.04, binary_loss=0.06, caption_view=0.00, caption_entity=0.00, loss=0.10, n_captions=0.0(0.0)
+2023-09-20 20:19:13,642   INFO  Epoch [32/32][40/127] LR: 6.9e-05, ETA: 0:05:18, Data: 0.37 (0.51), Iter: 3.24 (3.66), Accuracy: 0.98, loss_seg=0.07, binary_loss=0.13, caption_view=0.00, caption_entity=0.00, loss=0.20, n_captions=0.0(0.0)
+2023-09-20 20:20:20,425   INFO  Epoch [32/32][60/127] LR: 6.9e-05, ETA: 0:03:57, Data: 0.32 (0.46), Iter: 3.10 (3.55), Accuracy: 0.98, loss_seg=0.09, binary_loss=0.11, caption_view=0.00, caption_entity=0.00, loss=0.20, n_captions=0.0(0.0)
+2023-09-20 20:21:27,274   INFO  Epoch [32/32][80/127] LR: 6.9e-05, ETA: 0:02:44, Data: 0.36 (0.44), Iter: 3.09 (3.50), Accuracy: 0.97, loss_seg=0.08, binary_loss=0.07, caption_view=0.00, caption_entity=0.00, loss=0.15, n_captions=0.0(0.0)
+2023-09-20 20:22:33,092   INFO  Epoch [32/32][100/127] LR: 6.9e-05, ETA: 0:01:33, Data: 0.40 (0.42), Iter: 3.22 (3.46), Accuracy: 0.98, loss_seg=0.04, binary_loss=0.07, caption_view=0.00, caption_entity=0.00, loss=0.11, n_captions=0.0(0.0)
+2023-09-20 20:23:41,043   INFO  Epoch [32/32][120/127] LR: 6.9e-05, ETA: 0:00:24, Data: 0.36 (0.41), Iter: 3.21 (3.45), Accuracy: 0.98, loss_seg=0.10, binary_loss=0.06, caption_view=0.00, caption_entity=0.00, loss=0.17, n_captions=0.0(0.0)
+2023-09-20 20:24:02,938   INFO  Epoch [32/32][127/127] LR: 6.9e-05, ETA: 0:00:00, Data: 0.43 (0.41), Iter: 3.17 (3.43), Accuracy: 0.97, loss_seg=0.11, binary_loss=0.12, caption_view=0.00, caption_entity=0.00, loss=0.22, n_captions=0.0(0.0)
+2023-09-20 20:24:02,940   INFO  Train result at epoch [32/32]: mIoU/mPre/mAcc/allPre/allAcc             0.9149/0.9590/0.9500/0.9767/0.9767.
+2023-09-20 20:24:02,940   INFO  Train result at epoch [32/32]: binary_mAcc/binary_allAcc 0.7328/0.8946.
+2023-09-20 20:24:03,179   INFO  Checkpoint is saved to : /home/zhijiew/codes/3dseg/PLA/output/s3dis_models/spconv_clip_base8_caption_adamw/exp_tag/ckpt. Version: pcseg+0.1.0+3d8494b
+2023-09-20 20:24:03,295   INFO  *************** EPOCH 32 EVALUATION *****************
+eval:   0%|          | 0/9 [00:00<?, ?it/s]eval:   0%|          | 0/9 [00:08<?, ?it/s]eval:  11%|█         | 1/9 [00:08<01:07,  8.41s/it]eval:  11%|█         | 1/9 [00:11<01:07,  8.41s/it]eval:  22%|██▏       | 2/9 [00:11<00:37,  5.37s/it]eval:  22%|██▏       | 2/9 [00:12<00:37,  5.37s/it]eval:  33%|███▎      | 3/9 [00:12<00:19,  3.25s/it]eval:  33%|███▎      | 3/9 [00:13<00:19,  3.25s/it]eval:  44%|████▍     | 4/9 [00:13<00:11,  2.32s/it]eval:  44%|████▍     | 4/9 [00:14<00:11,  2.32s/it]eval:  56%|█████▌    | 5/9 [00:14<00:07,  1.92s/it]eval:  56%|█████▌    | 5/9 [00:15<00:07,  1.92s/it]eval:  67%|██████▋   | 6/9 [00:15<00:04,  1.61s/it]eval:  67%|██████▋   | 6/9 [00:17<00:04,  1.61s/it]eval:  78%|███████▊  | 7/9 [00:17<00:03,  1.67s/it]eval:  78%|███████▊  | 7/9 [00:18<00:03,  1.67s/it]eval:  89%|████████▉ | 8/9 [00:18<00:01,  1.40s/it]eval:  89%|████████▉ | 8/9 [00:19<00:01,  1.40s/it]eval: 100%|██████████| 9/9 [00:19<00:00,  1.32s/it]eval: 100%|██████████| 9/9 [00:19<00:00,  2.17s/it]
+2023-09-20 20:24:22,849   INFO  *************** Performance of EPOCH 32 *****************
+2023-09-20 20:24:22,850   INFO  ----------- base class -----------
+2023-09-20 20:24:22,850   INFO  Class ceiling : iou/acc/b_acc 0.9406/0.9497/0.9794.
+2023-09-20 20:24:22,850   INFO  Class floor : iou/acc/b_acc 0.9740/0.9908/0.9969.
+2023-09-20 20:24:22,850   INFO  Class wall : iou/acc/b_acc 0.8182/0.9662/0.9722.
+2023-09-20 20:24:22,850   INFO  Class beam : iou/acc/b_acc 0.0009/0.0064/0.5896.
+2023-09-20 20:24:22,850   INFO  Class column : iou/acc/b_acc 0.2172/0.2288/0.9453.
+2023-09-20 20:24:22,850   INFO  Class door : iou/acc/b_acc 0.5503/0.6448/0.9663.
+2023-09-20 20:24:22,850   INFO  Class chair : iou/acc/b_acc 0.8464/0.9475/0.9579.
+2023-09-20 20:24:22,850   INFO  Class board : iou/acc/b_acc 0.4010/0.4702/0.9087.
+2023-09-20 20:24:22,850   INFO  ----------- novel class -----------
+2023-09-20 20:24:22,850   INFO  Class window : iou/acc/b_acc 0.1211/0.4211/0.6067.
+2023-09-20 20:24:22,850   INFO  Class table : iou/acc/b_acc 0.0353/0.0366/0.9572.
+2023-09-20 20:24:22,850   INFO  Class sofa : iou/acc/b_acc 0.0276/0.5324/0.6938.
+2023-09-20 20:24:22,851   INFO  Class bookcase : iou/acc/b_acc 0.0206/0.0215/0.9089.
+2023-09-20 20:24:22,851   INFO  -----------------------------------
+2023-09-20 20:24:22,851   INFO  hIoU/mIoU/IoU_base/IoU_novel: 0.0941/0.4128/0.5936/0.0511
+2023-09-20 20:24:22,851   INFO  hAcc/mAcc/Acc_base/Acc_novel: 0.3642/0.5180/0.6505/0.2529
+2023-09-20 20:24:22,851   INFO  binary_mAcc/binary_allAcc: 0.8064/0.9535.
+2023-09-20 20:24:22,873   INFO  ****************Evaluation done.*****************
+2023-09-20 20:24:22,873   INFO  Best epoch: 5, best metric: 0.1420145413037505
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
